@@ -1,0 +1,74 @@
+Introduction
+============
+
+SAIL the sensor and actuator interface layer provides software modules for interfacing sensors, actuators, input devices and display devices like TMP007, OPT3001, push buttons etc. The SAIL modules use TI drivers for interfacing. The SAIL modules are scalable across devices MSP432, CC3220, CC2640R2, CC1310 and can be used with the MCU SDKs(msp432, cc26x0, cc32xx,cc13x0) seamlessly. The `Fig. 1 <#id1>`__ shows how SAIL fits into the SDK eco system.Please refer to MCU SDK User guide for more information regarding the MCU SDK Structure and its components.
+
+.. figure:: ./sail/SAIL-Plugin-with-sdk.jpg
+   :alt: SDK and Plugin Ecosystem
+
+   SDK and Plugin Ecosystem
+
+Features of SAIL modules
+
+-  Written completely in C.
+-  Follows well defined coding guidelines.
+-  Detailed API user guide is provided for each module.
+-  Supports more than one tool chain
+-  Provides console based examples which show the usage of various API of SAIL modules.
+-  Provides complex examples which use various SAIL modules to implement a BoosterPack Example.
+
+Supported Sensors
+-----------------
+
+The current version of the plugin supports following sensors/actuators
+
++--------------------+--------------------------------------------------------------------------------------+
+| Sensors/Actuator   | Description                                                                          |
++====================+======================================================================================+
+| Button             | Button Module API for interfacing simple push buttons                                |
++--------------------+--------------------------------------------------------------------------------------+
+| LED                | LED Module API for interfacing gpio based leds and pwm leds                          |
++--------------------+--------------------------------------------------------------------------------------+
+| TMP007             | TMP007 Module API for interfacing TMP007 temperature sensor                          |
++--------------------+--------------------------------------------------------------------------------------+
+| BME280             | BME280 Module API for interfacing BME280 humidity/pressure/temperature sensor        |
++--------------------+--------------------------------------------------------------------------------------+
+| BMI160             | BMI160 Module API for interfacing BMI160 and BMM150(as slave to BMI160) IMU sensor   |
++--------------------+--------------------------------------------------------------------------------------+
+| OPT3001            | OPT3001 Module API for interfacing OPT3001 optical(light) sensor                     |
++--------------------+--------------------------------------------------------------------------------------+
+| TMP006             | TMP006 Module API for interfacing TMP006 temperature sensor                          |
++--------------------+--------------------------------------------------------------------------------------+
+| BMA222E            | BMA222E Module API for interfacing BMA222E accelerometer                             |
++--------------------+--------------------------------------------------------------------------------------+
+| PGA460             | PGA460 Module API for interfacing PGA460 Ultrasonic transducer driver                |
++--------------------+--------------------------------------------------------------------------------------+
+
+**NOTE: BMI160 and BME280 source files and support files are reused from** `BOSCH Sensortech GitHub repository <https://github.com/BoschSensortec/>`__. **There have been configuration changes made to these files.**
+
+-  **BMI160 version is 2.0.7.**
+-  **BME280 version is 2.0.5(Pressure and Temperature compensation code revision is 1.1 and Humidity compensation code revision is 1.0)**
+-  **BMA2x2 version is 2.0.4**
+
+Directory Structure
+-------------------
+
+The Plugin can be extracted to user desired location.Preferred location would be $HOME/ti or c:/ti. Below is the top-level directory structure of the SAIL Plugin installation:
+
+.. figure:: ./sail/Plugin-Structure.jpg
+   :alt: 
+
+-  The "docs" directory contains all the documentation related to the SAIL Plugin. The "Documentation Overview" html page provides links to all these documents.
+-  The "examples" directory contains a number of example applications for each supported launchpad.
+-  The "source" directory contains source code for SAIL modules and makefile for building the SAIL library for various tool chains and platforms.
+
+The following figure shows the contents of the "source" directory.
+
+.. figure:: ./sail/Source-Structure.jpg
+   :alt: 
+
+The following figure shows the contents of the "examples" directory.
+
+.. figure:: ./sail/Example-Structure.jpg
+   :alt: 
+

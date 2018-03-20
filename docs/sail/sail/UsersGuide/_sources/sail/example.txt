@@ -1,0 +1,127 @@
+Understanding a SAIL Example Application
+========================================
+
+The SAIL Plugin provides examples under folder \\examples. There is an example application available for each SAIL module supported.There is one complex example which uses multiple SAIL modules.Each Example bundles a README.html file.This file explains the functionality that the example exposes.
+
+Importing, Building and Running the Example
+-------------------------------------------
+
+Import the example as described in the `SAIL Quick Started Guide <../../SAILQuickStartGuide.html>`__. Separate instructions are provided there for the Code Composer Studio (CCS) IDE, IAR Embedded Workbench, makefiles using the GCC compiler, and other supported development environments. Follow the instructions in the "Execute your First Application" section of the `SAIL Quick Started Guide <../../SAILQuickStartGuide.html>`__ for your development environment.
+
+A README.html file is included with the example files you imported. View this file and follow the instructions in the "Example Usage" section to run the example.
+
+For CC3220 boards using CCS, let the device “Free Run” instead of "Run."
+
+Understanding the Example
+-------------------------
+
+This section examines the i2ctmp007 example to understand how it was created.
+
+To see how the example supports multiple IDEs and RTOS kernels, it is best to look at the example files in the SAIL Plugin installation. When user imports the project for specific IDE only the files related to that particular kernel, compiler, IDE are imported. The files used to support other IDEs and RTOS kernels, Compilers will not be visible.
+
+Go to your **<SAIL\_INSTALL\_DIR>/examples/rtos/<board>/sail/i2ctmp007** directory
+
+The example contains the following source files:
+
+-  `main\_tirtos.c and main\_freertos.c <#main-tirtos-c-and-main-freertos-c>`__ : These files contain the main() function. They are located in subdirectories and use POSIX (pthread) calls to initialize drivers and create the threads that will run the mainthread function.
+-  `i2ctmp007.c <#i2ctmp007-c>`__ : This file contains the function mainthread. The mainthread function creates another thread which executes the function tmp007AlertTask which handles callbacks on temperature sensor interrupts(alerts)
+-  `<board>.c and <board>.h <#board-c-and-board-h>`__ (where is the name of your board): These file set up board-specific items, such as attribute structures for the various TI Drivers. For example, for the UART driver, properties such as the clock source and pins used are configured.
+-  `Board.h <#board-h>`__: Maps board-specific constants to board-independent constants that can be used by the application so that the application code is portable.
+-  `Board.html <#board-html>`__: Describes the LaunchPad and BoosterPacks which the examples in the Sensor and Actuator Plugin use.
+-  The following sections examine these parts of the application in more detail. Open the code files as you read these sections to better understand how an application uses the SDK(SDK of respective platform) and SAIL Modules.
+
+main\_tirtos.c and main\_freertos.c
+-----------------------------------
+
+The two versions of the main() function are mostly identical. Because POSIX Pthreads are used instead of direct calls to kernel APIs, only minor differences are needed to run the TI-RTOS Kernel or the FreeRTOS kernel.
+
+Header Files
+~~~~~~~~~~~~
+
+Both versions of the file #include the following files:
+
+-  stdint.h
+-  pthread.h
+-  ti/drivers/GPIO.h (this is a TI-RTOS package path, which locates the file within /source)
+-  Board.h
+
+The FreeRTOS version of the file also includes FreeRTOS.h and task.h.
+
+The TI-RTOS version of the file also includes ti/sysbios/BIOS.h, which in this case locates the file within /kernel/tirtos/packages/ti/sysbios.
+
+The main() Function
+-------------------
+
+1. The main() function begins by calling Board\_initGeneral(), which the Board.h file defines to point to a board-specific function in the .c file.
+2. The function then sets various thread attributes in the pAttrs structure:
+
+-  It calls pthread\_attr\_setdetachstate() with the PTHREAD\_CREATE\_DETACHED state to cause the threads created to be in the detached state, since the threads used by this application will never need to join with another thread.
+-  It calls pthread\_attr\_setschedparam() to set the default scheduling priority for the threads to 1 (the minimum priority).
+-  It calls pthread\_attr\_setstacksize() to set the size of the thread's stack to the value defined for the THREADSTACKSIZE constant, which is defined as a size in bytes earlier in the same file.
+
+3. The main() function then calls pthread\_create() it creates a thread that will run the mainThread() function. This thread runs at the default priority (1, which is the minimum). (See the console.c file for actions performed by this thread.)
+
+See the `"SYS/BIOS POSIX Thread (pthread) Support" <http://processors.wiki.ti.com/index.php/SYS/BIOS_POSIX_Thread_%28pthread%29_Support>`__ wiki topic for details about which POSIX APIs are supported by the SDK.
+
+4. At this point, the two versions of the main() function diverge.
+
+-  The TI-RTOS Kernel version simply calls BIOS\_start() to start the scheduler. BIOS\_start() does not return.
+-  The FreeRTOS version calls vTaskStartScheduler() to start the FreeRTOS scheduler. vTaskStartScheduler() does not return.
+
+i2ctmp007.c
+-----------
+
+This file is common across all the platforms supported.It does not change based on RTOS kernels, and development environments.Some examples like button, led may be board specific(There will minor changes to adapt to the board, ex: some interrupts of sensors may conflict with each other, some boards have less leds etc.)
+
+The **mainthread()** function runs when the RTOS scheduler starts.Below are list of main tasks which this thread does.
+
+-  Initialize GPIO, I2C, TMP007 ( SAIL Driver ).
+-  Create instances of Display and I2C driver(Display driver is used in UART mode, all the messages of the example are displayed on UART Terminal, Either CCS terminal or Terminal like teraterm, putty can be used to see the messages from the example application)
+-  Create the tmp007AlertTask for handling the temperature sensor interrupts(alerts).
+-  Creates Semaphore tmp007Sem. The thread tmp007AlertTask blocks on tmp007Sem.
+-  Creates the instance of temperature sensor.
+-  Sets temperature alert limits in the temperature senor
+-  Displays initial temperature readings and finally drops into never-ending while loop which does
+-  reads temperature sensor readings and display on UART.
+-  sleeps for configured SAMPLE\_TIME.
+
+The **tmp007AlertTask** thread performs below actions
+
+-  The thread blocks on the tmp007Sem.
+-  Whenever the tmp007Sem is posted the task unblocks and displays a message on whether alert was for low temperature or for high temperature.
+
+The **tmp007Callback** function performs below actions
+
+-  This function is passed to the tmp007 instance as callback function for temperature alerts.It is called in interrupt context.
+-  The function posts the semaphore tmp007Sem whenever it gets executed on temperature alert(interrupt).
+
+The while loop sleeps for a second. If the UART is closed, this provides enough time for the device to transition to a lower-power state under the control of the Power Manager. Note: For details about achieving better power savings on the MSP432 by using the Watchdog timer, see the TI-RTOS MSP432 Timer wiki topic.
+
+<board>.c and <board>.h
+-----------------------
+
+(Where is the name of your board.) These files are responsible for setting up the board specific items for the board. For example, the GPIO section configures the GPIO input pins, output pins, and LEDs. It creates an array of callback functions for the input pins and sets them to NULL. For each driver, it declares a configuration structure and sets the defaults for the attribute fields in the structure.
+
+The .c file also configures the structures used by the TI Drivers, SAIL Modules. These structures are similar for most TI Drivers, SAIL Modules. For example, a configuration data structure called \_Config is defined in .c. Each driver's configuration includes a pointer to a function table, a pointer to an object, and a pointer to a set of hardware attribute settings. For more about the driver configuration structures, see the detailed reference information for the TI Driver APIs (in the SDK folder) and `SAIL API Guide <../../SAILAPIs.html>`__.
+
+Board.h
+-------
+
+This file maps board-specific constants and functions to board-independent constants and functions. The board-independent names should be used by the application so that the application code is portable.
+
+Board.html
+----------
+
+This file gives information on
+
+-  Jumper settings of LaunchPad
+-  Boards resources used in examples
+-  BoosterPacks which are used in sensor and actuator plugin examples
+-  Peripherals used in examples
+
+Files for CCS, GCC, and IAR
+---------------------------
+
+For each supported RTOS, the example contains files that are used to set up a project for the example when you import the example into a development environment. Projects for Code Composer Studio (CCS), IAR Embedded Workbench, and the GNU Compiler Collection (GCC) can be created.
+
+**NOTE: Please refer to SDK user guide for more information on Kernels(TI\_RTOS,FreeRTOS), TI Drivers and other third party components**

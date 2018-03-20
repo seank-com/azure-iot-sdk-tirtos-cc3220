@@ -1,0 +1,304 @@
+#******************************************************************************
+#
+# Makefile.defs - Environment variables for building the SAIL library.
+#
+#  Copyright (C) 2016-17 Texas Instruments Incorporated - http:#www.ti.com/
+#
+#
+#  Redistribution and use in source and binary forms, with or without
+#  modification, are permitted provided that the following conditions
+#  are met:
+#
+#    Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#
+#    Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the
+#    distribution.
+#
+#    Neither the name of Texas Instruments Incorporated nor the names of
+#    its contributors may be used to endorse or promote products derived
+#    from this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+#  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+#  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+#  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+#  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+#  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+#  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+#  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+#  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#*****************************************************************************
+
+#############################################################
+#### DEFINES FOR EXTERNAL TOOLS - CHANGE FOR YOUR SYSTEM ####
+#############################################################
+# TODO - Support of IAR and GCC compiles
+include ../../../imports.mak
+
+
+CGT_ARM_DIR =$(CCS_ARMCOMPILER)
+############# SHOULD NOT MODIFY BELOW THIS LINE #############
+
+############# Compiler and archiver paths #############
+CCS_COMPILER  = "$(CGT_ARM_DIR)/bin/armcl"
+CCS_ARCHIVER  = "$(CGT_ARM_DIR)/bin/armar"
+CCS_STDINC    = "$(CGT_ARM_DIR)/include"
+
+IAR_COMPILER  = "$(IAR_ARMCOMPILER)/bin/iccarm"
+IAR_ASSEMBLER = "$(IAR_ARMCOMPILER)/bin/iasmarm"
+IAR_ARCHIVER  = "$(IAR_ARMCOMPILER)/bin/iarchive"
+IAR_STDINC    = "$(IAR_ARMCOMPILER)/inc/c/"
+
+GCC_COMPILER  = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
+GCC_ARCHIVER  = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-ar"
+GCC_STDINC    = "$(GCC_ARMCOMPILER)/arm-none-eabi/include"
+
+ifeq ($(MCU),cc32xx)
+CORESDK_INSTALL_DIR ?= $(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)
+else ifeq ($(MCU),msp432)
+CORESDK_INSTALL_DIR ?= $(SIMPLELINK_MSP432_SDK_INSTALL_DIR)
+else ifeq ($(MCU),cc26x0)
+CORESDK_INSTALL_DIR ?= $(SIMPLELINK_CC2640R2_SDK_INSTALL_DIR)
+else ifeq ($(MCU),cc13x0)
+CORESDK_INSTALL_DIR ?= $(SIMPLELINK_CC13X0_SDK_INSTALL_DIR)
+endif
+
+############# List of object files #############
+OBJ = $(BUILDDIR)/led.$(EXT) \
+$(BUILDDIR)/tmp007.$(EXT) \
+$(BUILDDIR)/opt3001.$(EXT)\
+$(BUILDDIR)/button.$(EXT)\
+$(BUILDDIR)/bmi160.$(EXT)\
+$(BUILDDIR)/bme280.$(EXT)\
+$(BUILDDIR)/bma2x2.$(EXT)\
+$(BUILDDIR)/tmp006.$(EXT)\
+$(BUILDDIR)/pga460.$(EXT)
+
+
+
+LINKOBJS = $(OBJ)
+
+vpath %.c ./led ./tmp007 ./opt3001 ./button ./bmi160 ./bme280 ./bma2x2 ./tmp006 ./pga460
+
+############# CCS Compiler options #############
+ifeq (${BUILD_TOOL}, ccs)
+
+CC = $(CCS_COMPILER)
+AR = $(CCS_ARCHIVER)
+STDINCPATH = $(CCS_STDINC)
+
+ifeq (${RTOS}, freertos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\ccs\freertos\$(MCU)
+else
+BUILDDIR = lib/ccs/freertos/$(MCU)
+endif
+endif
+ifeq (${RTOS}, tirtos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\ccs\tirtos\$(MCU)
+else
+BUILDDIR = lib/ccs/tirtos/$(MCU)
+endif
+endif
+EXT = obj
+
+LIBRARY = sail.lib
+
+#TODO: Still need to filter out some common CFLAGS between platforms
+ifeq ($(MCU),msp432)
+CFLAGS = -D__MSP432P401R__ --advice:power_severity=suppress -mv7M4 \
+--float_support=FPv4SPD16
+endif
+
+ifeq ($(MCU),cc32xx)
+CFLAGS = -mv7M4 --float_support=vfplib
+endif
+
+ifeq ($(MCU),cc26x0)
+CFLAGS  = -DDEVICE_FAMILY=cc26x0r2 -mv7M3 --float_support=vfplib
+endif
+
+ifeq ($(MCU),cc13x0)
+CFLAGS  = -DDEVICE_FAMILY=cc13x0 -mv7M3 --float_support=vfplib
+endif
+
+ifeq (${RTOS}, freertos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/freertos/posix
+endif
+
+ifeq (${RTOS}, tirtos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages/ti/sysbios/posix
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages
+CFLAGS += -I$(XDC_INSTALL_DIR)/packages
+endif
+
+# Common CFLAGS across MCU platforms
+CFLAGS += -I$(CCS_STDINC)
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source/third_party/CMSIS/Include
+CFLAGS += -I$(SAIL_INSTALL_DIR)/source
+CFLAGS += -me -g --diag_wrap=off --diag_warning=225 --diag_warning=255 --code_state=16 \
+--display_error_number --gen_func_subsections=on --abi=eabi --define=ccs
+CFLAGS +=--obj_directory=$(BUILDDIR)
+
+$(BUILDDIR)/%.$(EXT): %.c
+	@echo "  $(BUILD_TOOL)-CC      ${<}"
+	@${CC} ${CFLAGS} ${<} > DEVNULL
+
+.$(LIBRARY):
+	@echo "  $(BUILD_TOOL)-AR      $(LIBRARY)"
+	@$(AR) r $(BUILDDIR)/$(LIBRARY) $(LINKOBJS) > DEVNULL
+
+endif
+
+############# IAR Compiler options #############
+ifeq (${BUILD_TOOL}, ewarm)
+
+CC=$(IAR_COMPILER)
+ASM=$(IAR_ASSEMBLER)
+AR=$(IAR_ARCHIVER)
+STDINCPATH=$(IAR_STDINC)
+
+
+ifeq (${RTOS}, freertos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\iar\freertos\$(MCU)
+else
+BUILDDIR = lib/iar/freertos/$(MCU)
+endif
+endif
+ifeq (${RTOS}, tirtos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\iar\tirtos\$(MCU)
+else
+BUILDDIR = lib/iar/tirtos/$(MCU)
+endif
+endif
+EXT = o
+
+LIBRARY = sail.lib
+
+#TODO: Still need to filter out some common CFLAGS between platforms
+ifeq ($(MCU),msp432)
+CFLAGS = -D__MSP432P401R__  --cpu=Cortex-M4F
+--cpu=Cortex-M4F
+endif
+
+ifeq ($(MCU),cc32xx)
+CFLAGS = --cpu=Cortex-M4
+endif
+
+ifeq ($(MCU),$(filter ($MCU),cc26x0 cc13x0))
+CFLAGS  = --cpu=Cortex-M3
+endif
+
+ifeq (${RTOS}, freertos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/freertos/posix
+endif
+
+ifeq (${RTOS}, tirtos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages/ti/sysbios/posix
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages
+CFLAGS += -I$(XDC_INSTALL_DIR)/packages
+CFLAGS += -Dxdc_target_types__=$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages/iar/targets/arm/std.h
+endif
+
+# Common CFLAGS across MCU platforms
+CFLAGS += -I$(IAR_STDINC) 
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source/third_party/CMSIS/Include
+CFLAGS += -I$(SAIL_INSTALL_DIR)/source
+CFLAGS += --output=$(BUILDDIR)
+CFLAGS += --silent -e --aeabi --thumb --diag_suppress=Pa050\
+
+$(BUILDDIR)/%.$(EXT): %.c
+	@echo "  $(BUILD_TOOL)-CC    ${<}"
+	@${CC} ${CFLAGS} ${<} > DEVNULL
+
+.$(LIBRARY):
+	@echo "  $(BUILD_TOOL)-AR    $(LIBRARY)"
+	$(AR) --create $(LINKOBJS) -o $(BUILDDIR)/${LIBRARY} > DEVNULL
+
+endif
+
+############# GCC Compiler options #############
+ifeq (${BUILD_TOOL}, gcc)
+
+CC=$(GCC_COMPILER)
+AR=$(GCC_ARCHIVER)
+STDINCPATH=$(GCC_STDINC)
+
+ifeq (${RTOS}, freertos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\gcc\freertos\$(MCU)
+else
+BUILDDIR = lib/gcc/freertos/$(MCU)
+endif
+endif
+ifeq (${RTOS}, tirtos)
+ifeq ("$(SHELL)","sh.exe")
+BUILDDIR = lib\gcc\tirtos\$(MCU)
+else
+BUILDDIR = lib/gcc/tirtos/$(MCU)
+endif
+endif
+EXT = obj
+
+LIBRARY = sail.lib
+
+#TODO: Still need to filter out some common CFLAGS between platforms
+ifeq ($(MCU),msp432)
+CFLAGS = -D__MSP432P401R__ -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -march=armv7e-m
+endif
+
+ifeq ($(MCU),cc32xx)
+CFLAGS  = -mcpu=cortex-m4  -mfloat-abi=soft -march=armv7e-m
+endif
+
+ifeq ($(MCU),$(filter $(MCU),cc26x0 cc13x0))
+CFLAGS  = -DDEVICE_FAMILY=cc26x0 -mcpu=cortex-m3  -mfloat-abi=soft -march=armv7-m
+endif
+
+ifeq (${RTOS}, freertos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/freertos/posix
+endif
+
+ifeq (${RTOS}, tirtos)
+# CFLAGS RTOS specific
+CFLAGS += -I. -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages/ti/sysbios/posix
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages
+CFLAGS += -I$(XDC_INSTALL_DIR)/packages
+CFLAGS += -Dxdc_target_types__=$(CORESDK_INSTALL_DIR)/kernel/tirtos/packages/gnu/targets/std.h
+CFLAGS += -Dgcc
+endif
+
+# Common CFLAGS across MCU platforms
+CFLAGS += -I$(GCC_STDINC) 
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source
+CFLAGS += -I$(CORESDK_INSTALL_DIR)/source/third_party/CMSIS/Include
+CFLAGS += -I$(SAIL_INSTALL_DIR)/source
+CFLAGS += --output=$(BUILDDIR)
+CFLAGS += -mthumb -ffunction-sections -fdata-sections -g -gstrict-dwarf -Wall
+
+$(BUILDDIR)/%.$(EXT): %.c
+	@echo "  $(BUILD_TOOL)-CC      ${<}"
+	@${CC} ${CFLAGS} -c -o ${@} ${<}
+
+.$(LIBRARY):
+	@echo "  $(BUILD_TOOL)-AR      $(LIBRARY)"
+	@$(AR) -cr -v $(BUILDDIR)/${LIBRARY} $(LINKOBJS)  > DEVNULL
+
+endif
+

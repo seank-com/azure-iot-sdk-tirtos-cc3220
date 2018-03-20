@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.CC3220S"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="Azure TI-RTOS build debug configuration"
+        name="azure_cc32xx_tirtos_builds_CC3220S_LAUNCHXL_debug_ccs"
+        outputType="rtscConfiguration"
+        toolChain="TI"
+        device="Cortex M.CC3220S"
+        description="Azure TI-RTOS debug configuration project">
+
+        <property name="products" value="com.ti.SIMPLELINK_CC32XX_SDK"/>
+        <property name="xdcToolsVersion" value="3_50_00_10_core"/>
+        <property name="target" value="ti.targets.arm.elf.M4"/>
+        <property name="platform" value="ti.platforms.simplelink:CC3220S"/>
+        <property name="buildProfile" value="release"/>
+        <group id="AZURE_CC32XX.CC3220S_LAUNCHXL.debug.ccs"/>
+        <file path="makefile.defs" openOnCreation="false" excludeFromBuild="false" action="copy" ></file>
+        <file path="../debug.cfg" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="../README.md" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy" >
+        </file>
+    </project>
+</projectSpec>

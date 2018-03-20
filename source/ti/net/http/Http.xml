@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<gep name="HTTP" title="HTTP Configuration Options" version="1">
+
+<page name="Basic" title="Basic">
+<html><body><table>
+
+  <tr>
+    <td>
+      <form>
+        <p>The HTTP module allows an application to automatically bring in the library for HTTP Client and Server.</p>
+        <p> </p>
+      </form>
+    </td>
+  </tr>
+
+  <tr><td>
+    <control type="checkbox" label="Add HTTP to my configuration" value="value:this.$used" bold="true"/></td>
+  </tr>
+
+  <tr>
+    <td>
+    <h1>Library Options</h1>
+    <table>
+        <tr>
+        <td><control type="radiogroup" value="value:ti.net.http.Http.networkStack" label="HTTP Library with" tooltip="value:ti.net.http.Http.networkStack.$summary" align="left" /></td>
+        </tr>
+    </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <table>
+        <tr>
+        <td><control type="checkbox" value="value:ti.net.http.Http.enableTLS" label="Enable SSL/TLS support" tooltip="value:ti.net.http.Http.enableTLS.$summary" align="left" /></td>
+        </tr>
+    </table>
+    </td>
+  </tr>
+</table></body></html>
+</page>
+
+<properties name="Advanced" title="All Options" enabled="true" visible="true" link="ti.net.http.Http"/>
+</gep>

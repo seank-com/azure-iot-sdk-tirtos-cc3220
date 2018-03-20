@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Understanding a SAIL Example Application &mdash; SimpleLink&lt;sup&gt;TM&lt;/sup&gt;  Sensor and Actuator Plugin Users Guide 1_10_00_06 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="SimpleLink&lt;sup&gt;TM&lt;/sup&gt;  Sensor and Actuator Plugin Users Guide 1_10_00_06 documentation" href="../index.html"/>
+        <link rel="prev" title="Introduction" href="introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SimpleLink<sup>TM</sup>  Sensor and Actuator Plugin Users Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1_10_00_06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding a SAIL Example Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-building-and-running-the-example">Importing, Building and Running the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-the-example">Understanding the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-tirtos-c-and-main-freertos-c">main_tirtos.c and main_freertos.c</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#header-files">Header Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-main-function">The main() Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i2ctmp007-c">i2ctmp007.c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#board-c-and-board-h">&lt;board&gt;.c and &lt;board&gt;.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#board-h">Board.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#board-html">Board.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#files-for-ccs-gcc-and-iar">Files for CCS, GCC, and IAR</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">SimpleLink<sup>TM</sup>  Sensor and Actuator Plugin Users Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Understanding a SAIL Example Application</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="understanding-a-sail-example-application">
+<h1>Understanding a SAIL Example Application<a class="headerlink" href="#understanding-a-sail-example-application" title="Permalink to this headline">¶</a></h1>
+<p>The SAIL Plugin provides examples under folder \examples. There is an example application available for each SAIL module supported.There is one complex example which uses multiple SAIL modules.Each Example bundles a README.html file.This file explains the functionality that the example exposes.</p>
+<div class="section" id="importing-building-and-running-the-example">
+<h2>Importing, Building and Running the Example<a class="headerlink" href="#importing-building-and-running-the-example" title="Permalink to this headline">¶</a></h2>
+<p>Import the example as described in the <a class="reference external" href="../../SAILQuickStartGuide.html">SAIL Quick Started Guide</a>. Separate instructions are provided there for the Code Composer Studio (CCS) IDE, IAR Embedded Workbench, makefiles using the GCC compiler, and other supported development environments. Follow the instructions in the &#8220;Execute your First Application&#8221; section of the <a class="reference external" href="../../SAILQuickStartGuide.html">SAIL Quick Started Guide</a> for your development environment.</p>
+<p>A README.html file is included with the example files you imported. View this file and follow the instructions in the &#8220;Example Usage&#8221; section to run the example.</p>
+<p>For CC3220 boards using CCS, let the device “Free Run” instead of &#8220;Run.&#8221;</p>
+</div>
+<div class="section" id="understanding-the-example">
+<h2>Understanding the Example<a class="headerlink" href="#understanding-the-example" title="Permalink to this headline">¶</a></h2>
+<p>This section examines the i2ctmp007 example to understand how it was created.</p>
+<p>To see how the example supports multiple IDEs and RTOS kernels, it is best to look at the example files in the SAIL Plugin installation. When user imports the project for specific IDE only the files related to that particular kernel, compiler, IDE are imported. The files used to support other IDEs and RTOS kernels, Compilers will not be visible.</p>
+<p>Go to your <strong>&lt;SAIL_INSTALL_DIR&gt;/examples/rtos/&lt;board&gt;/sail/i2ctmp007</strong> directory</p>
+<p>The example contains the following source files:</p>
+<ul class="simple">
+<li><a class="reference external" href="#main-tirtos-c-and-main-freertos-c">main_tirtos.c and main_freertos.c</a> : These files contain the main() function. They are located in subdirectories and use POSIX (pthread) calls to initialize drivers and create the threads that will run the mainthread function.</li>
+<li><a class="reference external" href="#i2ctmp007-c">i2ctmp007.c</a> : This file contains the function mainthread. The mainthread function creates another thread which executes the function tmp007AlertTask which handles callbacks on temperature sensor interrupts(alerts)</li>
+<li><a class="reference external" href="#board-c-and-board-h">&lt;board&gt;.c and &lt;board&gt;.h</a> (where is the name of your board): These file set up board-specific items, such as attribute structures for the various TI Drivers. For example, for the UART driver, properties such as the clock source and pins used are configured.</li>
+<li><a class="reference external" href="#board-h">Board.h</a>: Maps board-specific constants to board-independent constants that can be used by the application so that the application code is portable.</li>
+<li><a class="reference external" href="#board-html">Board.html</a>: Describes the LaunchPad and BoosterPacks which the examples in the Sensor and Actuator Plugin use.</li>
+<li>The following sections examine these parts of the application in more detail. Open the code files as you read these sections to better understand how an application uses the SDK(SDK of respective platform) and SAIL Modules.</li>
+</ul>
+</div>
+<div class="section" id="main-tirtos-c-and-main-freertos-c">
+<h2>main_tirtos.c and main_freertos.c<a class="headerlink" href="#main-tirtos-c-and-main-freertos-c" title="Permalink to this headline">¶</a></h2>
+<p>The two versions of the main() function are mostly identical. Because POSIX Pthreads are used instead of direct calls to kernel APIs, only minor differences are needed to run the TI-RTOS Kernel or the FreeRTOS kernel.</p>
+<div class="section" id="header-files">
+<h3>Header Files<a class="headerlink" href="#header-files" title="Permalink to this headline">¶</a></h3>
+<p>Both versions of the file #include the following files:</p>
+<ul class="simple">
+<li>stdint.h</li>
+<li>pthread.h</li>
+<li>ti/drivers/GPIO.h (this is a TI-RTOS package path, which locates the file within /source)</li>
+<li>Board.h</li>
+</ul>
+<p>The FreeRTOS version of the file also includes FreeRTOS.h and task.h.</p>
+<p>The TI-RTOS version of the file also includes ti/sysbios/BIOS.h, which in this case locates the file within /kernel/tirtos/packages/ti/sysbios.</p>
+</div>
+</div>
+<div class="section" id="the-main-function">
+<h2>The main() Function<a class="headerlink" href="#the-main-function" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>The main() function begins by calling Board_initGeneral(), which the Board.h file defines to point to a board-specific function in the .c file.</li>
+<li>The function then sets various thread attributes in the pAttrs structure:</li>
+</ol>
+<ul class="simple">
+<li>It calls pthread_attr_setdetachstate() with the PTHREAD_CREATE_DETACHED state to cause the threads created to be in the detached state, since the threads used by this application will never need to join with another thread.</li>
+<li>It calls pthread_attr_setschedparam() to set the default scheduling priority for the threads to 1 (the minimum priority).</li>
+<li>It calls pthread_attr_setstacksize() to set the size of the thread&#8217;s stack to the value defined for the THREADSTACKSIZE constant, which is defined as a size in bytes earlier in the same file.</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>The main() function then calls pthread_create() it creates a thread that will run the mainThread() function. This thread runs at the default priority (1, which is the minimum). (See the console.c file for actions performed by this thread.)</li>
+</ol>
+<p>See the <a class="reference external" href="http://processors.wiki.ti.com/index.php/SYS/BIOS_POSIX_Thread_%28pthread%29_Support">&#8220;SYS/BIOS POSIX Thread (pthread) Support&#8221;</a> wiki topic for details about which POSIX APIs are supported by the SDK.</p>
+<ol class="arabic simple" start="4">
+<li>At this point, the two versions of the main() function diverge.</li>
+</ol>
+<ul class="simple">
+<li>The TI-RTOS Kernel version simply calls BIOS_start() to start the scheduler. BIOS_start() does not return.</li>
+<li>The FreeRTOS version calls vTaskStartScheduler() to start the FreeRTOS scheduler. vTaskStartScheduler() does not return.</li>
+</ul>
+</div>
+<div class="section" id="i2ctmp007-c">
+<h2>i2ctmp007.c<a class="headerlink" href="#i2ctmp007-c" title="Permalink to this headline">¶</a></h2>
+<p>This file is common across all the platforms supported.It does not change based on RTOS kernels, and development environments.Some examples like button, led may be board specific(There will minor changes to adapt to the board, ex: some interrupts of sensors may conflict with each other, some boards have less leds etc.)</p>
+<p>The <strong>mainthread()</strong> function runs when the RTOS scheduler starts.Below are list of main tasks which this thread does.</p>
+<ul class="simple">
+<li>Initialize GPIO, I2C, TMP007 ( SAIL Driver ).</li>
+<li>Create instances of Display and I2C driver(Display driver is used in UART mode, all the messages of the example are displayed on UART Terminal, Either CCS terminal or Terminal like teraterm, putty can be used to see the messages from the example application)</li>
+<li>Create the tmp007AlertTask for handling the temperature sensor interrupts(alerts).</li>
+<li>Creates Semaphore tmp007Sem. The thread tmp007AlertTask blocks on tmp007Sem.</li>
+<li>Creates the instance of temperature sensor.</li>
+<li>Sets temperature alert limits in the temperature senor</li>
+<li>Displays initial temperature readings and finally drops into never-ending while loop which does</li>
+<li>reads temperature sensor readings and display on UART.</li>
+<li>sleeps for configured SAMPLE_TIME.</li>
+</ul>
+<p>The <strong>tmp007AlertTask</strong> thread performs below actions</p>
+<ul class="simple">
+<li>The thread blocks on the tmp007Sem.</li>
+<li>Whenever the tmp007Sem is posted the task unblocks and displays a message on whether alert was for low temperature or for high temperature.</li>
+</ul>
+<p>The <strong>tmp007Callback</strong> function performs below actions</p>
+<ul class="simple">
+<li>This function is passed to the tmp007 instance as callback function for temperature alerts.It is called in interrupt context.</li>
+<li>The function posts the semaphore tmp007Sem whenever it gets executed on temperature alert(interrupt).</li>
+</ul>
+<p>The while loop sleeps for a second. If the UART is closed, this provides enough time for the device to transition to a lower-power state under the control of the Power Manager. Note: For details about achieving better power savings on the MSP432 by using the Watchdog timer, see the TI-RTOS MSP432 Timer wiki topic.</p>
+</div>
+<div class="section" id="board-c-and-board-h">
+<h2>&lt;board&gt;.c and &lt;board&gt;.h<a class="headerlink" href="#board-c-and-board-h" title="Permalink to this headline">¶</a></h2>
+<p>(Where is the name of your board.) These files are responsible for setting up the board specific items for the board. For example, the GPIO section configures the GPIO input pins, output pins, and LEDs. It creates an array of callback functions for the input pins and sets them to NULL. For each driver, it declares a configuration structure and sets the defaults for the attribute fields in the structure.</p>
+<p>The .c file also configures the structures used by the TI Drivers, SAIL Modules. These structures are similar for most TI Drivers, SAIL Modules. For example, a configuration data structure called _Config is defined in .c. Each driver&#8217;s configuration includes a pointer to a function table, a pointer to an object, and a pointer to a set of hardware attribute settings. For more about the driver configuration structures, see the detailed reference information for the TI Driver APIs (in the SDK folder) and <a class="reference external" href="../../SAILAPIs.html">SAIL API Guide</a>.</p>
+</div>
+<div class="section" id="board-h">
+<h2>Board.h<a class="headerlink" href="#board-h" title="Permalink to this headline">¶</a></h2>
+<p>This file maps board-specific constants and functions to board-independent constants and functions. The board-independent names should be used by the application so that the application code is portable.</p>
+</div>
+<div class="section" id="board-html">
+<h2>Board.html<a class="headerlink" href="#board-html" title="Permalink to this headline">¶</a></h2>
+<p>This file gives information on</p>
+<ul class="simple">
+<li>Jumper settings of LaunchPad</li>
+<li>Boards resources used in examples</li>
+<li>BoosterPacks which are used in sensor and actuator plugin examples</li>
+<li>Peripherals used in examples</li>
+</ul>
+</div>
+<div class="section" id="files-for-ccs-gcc-and-iar">
+<h2>Files for CCS, GCC, and IAR<a class="headerlink" href="#files-for-ccs-gcc-and-iar" title="Permalink to this headline">¶</a></h2>
+<p>For each supported RTOS, the example contains files that are used to set up a project for the example when you import the example into a development environment. Projects for Code Composer Studio (CCS), IAR Embedded Workbench, and the GNU Compiler Collection (GCC) can be created.</p>
+<p><strong>NOTE: Please refer to SDK user guide for more information on Kernels(TI_RTOS,FreeRTOS), TI Drivers and other third party components</strong></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Texas Instruments.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1_10_00_06',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

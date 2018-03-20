@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['abs',['ABS',['../bmi160_8h.html#ae2f08dc603ae93c402abd918ba4e23e1',1,'bmi160.h']]],
+  ['accel_5flowpower',['ACCEL_LOWPOWER',['../bmi160_8h.html#ae7f78c7b5b18afbc1945576fe39c0ae0',1,'bmi160.h']]],
+  ['accel_5fmode_5fnormal',['ACCEL_MODE_NORMAL',['../bmi160_8h.html#a0d4412228c3a36c75d1717289c8fb810',1,'bmi160.h']]],
+  ['accel_5foffset_5fenable',['ACCEL_OFFSET_ENABLE',['../bmi160_8h.html#ac8720a59d2744610b0012c3598d3cc26',1,'bmi160.h']]],
+  ['accel_5fsuspend',['ACCEL_SUSPEND',['../bmi160_8h.html#a2549cc5226c1edf70303fa3f848fecf4',1,'bmi160.h']]],
+  ['active_5fhigh',['ACTIVE_HIGH',['../bma2x2_8h.html#a80c342b08fadc7974d3a31817aafaf06',1,'bma2x2.h']]],
+  ['active_5flow',['ACTIVE_LOW',['../bma2x2_8h.html#ad8906c0208cd948e4f5fe79a920a3b7d',1,'bma2x2.h']]],
+  ['akm09911_5fsensitivity_5fdiv',['AKM09911_SENSITIVITY_DIV',['../bmi160_8h.html#aa68b765447f75f0f2e43ad16f7c0102a',1,'bmi160.h']]],
+  ['akm09912_5fsensitivity',['AKM09912_SENSITIVITY',['../bmi160_8h.html#ae74fba16166094382776c02669f5893f',1,'bmi160.h']]],
+  ['akm09912_5fsensitivity_5fdiv',['AKM09912_SENSITIVITY_DIV',['../bmi160_8h.html#ab7ca3e6584963482f30cb48bdf3366ed',1,'bmi160.h']]],
+  ['akm_5fasax',['AKM_ASAX',['../bmi160_8h.html#a67c0625e53105e56abb81488cc30e319',1,'bmi160.h']]],
+  ['akm_5fasay',['AKM_ASAY',['../bmi160_8h.html#af3e05a8bda1b5ad072dba515b5bfcbc0',1,'bmi160.h']]],
+  ['akm_5fasaz',['AKM_ASAZ',['../bmi160_8h.html#ad66c589df16b93a058ae2492087e830a',1,'bmi160.h']]],
+  ['akm_5fchip_5fid_5freg',['AKM_CHIP_ID_REG',['../bmi160_8h.html#aedd592628372bc2f81223a61d3e7d2fe',1,'bmi160.h']]],
+  ['akm_5fdata_5fregister',['AKM_DATA_REGISTER',['../bmi160_8h.html#a0b29627b36097d4611c0d6a4f2779b21',1,'bmi160.h']]],
+  ['akm_5ffuse_5from_5fmode',['AKM_FUSE_ROM_MODE',['../bmi160_8h.html#ad256a1b55ce1aaa2b73fbd677e5128a4',1,'bmi160.h']]],
+  ['akm_5fpower_5fdown_5fmode',['AKM_POWER_DOWN_MODE',['../bmi160_8h.html#ab9564267a1f15136adc12087bdbdf292',1,'bmi160.h']]],
+  ['akm_5fpower_5fdown_5fmode_5fdata',['AKM_POWER_DOWN_MODE_DATA',['../bmi160_8h.html#a2c7951ceff8770e896ba74ecaf57d382',1,'bmi160.h']]],
+  ['akm_5fpower_5fmode_5freg',['AKM_POWER_MODE_REG',['../bmi160_8h.html#a4ef7fd21541653ad7d3436ebff1d0d7d',1,'bmi160.h']]],
+  ['akm_5fsingle_5fmeas_5fmode',['AKM_SINGLE_MEAS_MODE',['../bmi160_8h.html#aaecdeab12a885ac65a13e665241f3819',1,'bmi160.h']]],
+  ['akm_5fsingle_5fmeasurement_5fmode',['AKM_SINGLE_MEASUREMENT_MODE',['../bmi160_8h.html#ae6cafded82192c06425a3aa5bfd32ccb',1,'bmi160.h']]],
+  ['any_5fmotion',['ANY_MOTION',['../bmi160_8h.html#a41eb0cffc6576fb92b2184d7eb9ef5b6',1,'bmi160.h']]]
+];

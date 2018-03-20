@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.net.http" version="1, 0, 0" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/package_ti.net.http.c"/>
+        <srcFile name="httpcli.c"/>
+        <srcFile name="httpstd.c"/>
+        <srcFile name="http2cli.c"/>
+        <srcFile name="http2hdr.c"/>
+        <srcFile name="http2utils.c"/>
+        <srcFile name="hpack.c"/>
+        <srcFile name="huffman.c"/>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="lib/http_sl.aem4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/http_sl/package/package_ti.net.http.oem4.dep" src="package/package_ti.net.http.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpcli.oem4.dep" src="httpcli.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpstd.oem4.dep" src="httpstd.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2cli.oem4.dep" src="http2cli.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2hdr.oem4.dep" src="http2hdr.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2utils.oem4.dep" src="http2utils.c"/>
+        <srcFile name="package/lib/lib/http_sl/hpack.oem4.dep" src="hpack.c"/>
+        <srcFile name="package/lib/lib/http_sl/huffman.oem4.dep" src="huffman.c"/>
+        <srcFile name="lib/http_sl.arm4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/http_sl/package/package_ti.net.http.orm4.dep" src="package/package_ti.net.http.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpcli.orm4.dep" src="httpcli.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpstd.orm4.dep" src="httpstd.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2cli.orm4.dep" src="http2cli.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2hdr.orm4.dep" src="http2hdr.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2utils.orm4.dep" src="http2utils.c"/>
+        <srcFile name="package/lib/lib/http_sl/hpack.orm4.dep" src="hpack.c"/>
+        <srcFile name="package/lib/lib/http_sl/huffman.orm4.dep" src="huffman.c"/>
+        <srcFile name="lib/http_sl.am4g.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/http_sl/package/package_ti.net.http.om4g.dep" src="package/package_ti.net.http.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpcli.om4g.dep" src="httpcli.c"/>
+        <srcFile name="package/lib/lib/http_sl/httpstd.om4g.dep" src="httpstd.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2cli.om4g.dep" src="http2cli.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2hdr.om4g.dep" src="http2hdr.c"/>
+        <srcFile name="package/lib/lib/http_sl/http2utils.om4g.dep" src="http2utils.c"/>
+        <srcFile name="package/lib/lib/http_sl/hpack.om4g.dep" src="hpack.c"/>
+        <srcFile name="package/lib/lib/http_sl/huffman.om4g.dep" src="huffman.c"/>
+        <srcFile name="lib/http.av7AF.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/http/package/package_ti.net.http.ov7AF.dep" src="package/package_ti.net.http.c"/>
+        <srcFile name="package/lib/lib/http/httpcli.ov7AF.dep" src="httpcli.c"/>
+        <srcFile name="package/lib/lib/http/httpstd.ov7AF.dep" src="httpstd.c"/>
+        <srcFile name="package/lib/lib/http/http2cli.ov7AF.dep" src="http2cli.c"/>
+        <srcFile name="package/lib/lib/http/http2hdr.ov7AF.dep" src="http2hdr.c"/>
+        <srcFile name="package/lib/lib/http/http2utils.ov7AF.dep" src="http2utils.c"/>
+        <srcFile name="package/lib/lib/http/hpack.ov7AF.dep" src="hpack.c"/>
+        <srcFile name="package/lib/lib/http/huffman.ov7AF.dep" src="huffman.c"/>
+        <srcFile name="lib/http.a86U.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/http/package/package_ti.net.http.o86U.dep" src="package/package_ti.net.http.c"/>
+        <srcFile name="package/lib/lib/http/httpcli.o86U.dep" src="httpcli.c"/>
+        <srcFile name="package/lib/lib/http/httpstd.o86U.dep" src="httpstd.c"/>
+        <srcFile name="package/lib/lib/http/http2cli.o86U.dep" src="http2cli.c"/>
+        <srcFile name="package/lib/lib/http/http2hdr.o86U.dep" src="http2hdr.c"/>
+        <srcFile name="package/lib/lib/http/http2utils.o86U.dep" src="http2utils.c"/>
+        <srcFile name="package/lib/lib/http/hpack.o86U.dep" src="hpack.c"/>
+        <srcFile name="package/lib/lib/http/huffman.o86U.dep" src="huffman.c"/>
+        <srcFile name="package/rel/ti_net_http.zip.dep" src="package/rel/ti_net_http.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.arm.elf.M4"
+            version="ti.targets.arm.elf.M4{1,0,16.9,3"
+            rawVersion="16.9.3"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="em4"
+            rootDir="/db/vendors/ti/arm/16.9.3.LTS/Linux"
+            os="undefined"
+            rts="ti.targets.arm.rtsarm">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="iar.targets.arm.M4"
+            version="iar.targets.arm.M4{1,0,8.11,1"
+            rawVersion="8.11.1.47"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="rm4"
+            rootDir="/db/vendors/iar/arm/8.11.1.47/Linux"
+            os="undefined"
+            rts="iar.targets.arm.rts">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.arm.M4"
+            version="gnu.targets.arm.M4{1,0,6.3,1"
+            rawVersion="6.3.1"
+            platform="ti.platforms.tiva:TM4C1294NCPDT"
+            isa="v7M4"
+            suffix="m4g"
+            rootDir="/db/vendors/linaro/gcc-arm-none-eabi-6-2017-q1-update"
+            os="undefined"
+            rts="gnu.targets.arm.rtsv7M">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.arm.GCArmv7AF"
+            version="gnu.targets.arm.GCArmv7AF{1,0,4.7,3"
+            rawVersion="4.7.3"
+            platform="host.platforms.arm"
+            isa="v7A"
+            suffix="v7AF"
+            rootDir="/db/builds/mgrosen/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/sysroots/i686-arago-linux/usr"
+            os="Linux"
+            rts="gnu.targets.arm.rtsv7A">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.Linux86"
+            version="gnu.targets.Linux86{1,0,4.3,4"
+            rawVersion="4.3.4"
+            platform="host.platforms.PC"
+            isa="i686"
+            suffix="86U"
+            rootDir="/db/toolsrc/library/vendors2005/opensource/gcc/4.3.4/Linux"
+            os="Linux"
+            rts="gnu.targets.rts86U">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    <library name="lib/http_sl"
+        pname="lib/http_sl.aem4"
+        profile="release"
+        target="ti.targets.arm.elf.M4"/>
+    <library name="lib/http_sl"
+        pname="lib/http_sl.arm4"
+        profile="release"
+        target="iar.targets.arm.M4"/>
+    <library name="lib/http_sl"
+        pname="lib/http_sl.am4g"
+        profile="release"
+        target="gnu.targets.arm.M4"/>
+    <library name="lib/http"
+        pname="lib/http.av7AF"
+        profile="release"
+        target="gnu.targets.arm.GCArmv7AF"/>
+    <library name="lib/http"
+        pname="lib/http.a86U"
+        profile="release"
+        target="gnu.targets.Linux86"/>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="ti_net_http"
+        pname="../../../../exports/ti_net_http.zip"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="httpcli.h"/>
+        <file name="http2cli.h"/>
+        <file name="httpstd.h"/>
+        <file name="http2std.h"/>
+        <file name="http2hdr.h"/>
+        <file name="http2utils.h"/>
+        <file name="hpack.h"/>
+        <file name="huffman.h"/>
+        <file name="Http.xml"/>
+        <file name="package.bld"/>
+        <file name="package/package.cfg.xdc.inc"/>
+        <file name="lib/http_sl.aem4"/>
+        <file name="package/package_ti.net.http.c"/>
+        <file name="httpcli.c"/>
+        <file name="httpstd.c"/>
+        <file name="http2cli.c"/>
+        <file name="http2hdr.c"/>
+        <file name="http2utils.c"/>
+        <file name="hpack.c"/>
+        <file name="huffman.c"/>
+        <file name="lib/http_sl.arm4"/>
+        <file name="lib/http_sl.am4g"/>
+        <file name="lib/http.av7AF"/>
+        <file name="lib/http.a86U"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

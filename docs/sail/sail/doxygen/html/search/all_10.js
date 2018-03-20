@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['sail_20api_20guide',['SAIL API Guide',['../index.html',1,'']]],
+  ['s0',['S0',['../struct_t_m_p006___object.html#a0e970635e7a0fbe9a283746e704f92f3',1,'TMP006_Object::S0()'],['../struct_t_m_p006___params.html#ab8c1f960019e0d5cbf8cfbb8aa8e0153',1,'TMP006_Params::S0()']]],
+  ['s16',['s16',['../bma2x2_8h.html#a4cb19f4a3324cfe0938ddfbfabaa825b',1,'s16():&#160;bma2x2.h'],['../bme280_8h.html#a4cb19f4a3324cfe0938ddfbfabaa825b',1,'s16():&#160;bme280.h'],['../bmi160_8h.html#a4cb19f4a3324cfe0938ddfbfabaa825b',1,'s16():&#160;bmi160.h']]],
+  ['s32',['s32',['../bma2x2_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6',1,'s32():&#160;bma2x2.h'],['../bme280_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6',1,'s32():&#160;bme280.h'],['../bmi160_8h.html#a0ce6887c26c1c49ad3be5710dd42bfd6',1,'s32():&#160;bmi160.h']]],
+  ['s64',['s64',['../bma2x2_8h.html#a5ace6ff5dbe86acc6c8b3387b8d80ecc',1,'s64():&#160;bma2x2.h'],['../bme280_8h.html#a5ace6ff5dbe86acc6c8b3387b8d80ecc',1,'s64():&#160;bme280.h'],['../bmi160_8h.html#a5ace6ff5dbe86acc6c8b3387b8d80ecc',1,'s64():&#160;bmi160.h']]],
+  ['s8',['s8',['../bma2x2_8h.html#a151f780fb455885061d3b77ec1c90c03',1,'s8():&#160;bma2x2.h'],['../bme280_8h.html#a151f780fb455885061d3b77ec1c90c03',1,'s8():&#160;bme280.h'],['../bmi160_8h.html#a151f780fb455885061d3b77ec1c90c03',1,'s8():&#160;bmi160.h']]],
+  ['sat_5ffdiag_5fth',['sat_fdiag_th',['../struct_p_g_a460___e_e_b_w.html#ab38700e3dd5d4f9d671a72f073060365',1,'PGA460_EEBW']]],
+  ['sd_5fresp_5fsize',['SD_RESP_SIZE',['../pga460_8c.html#ac2214ebc6b111f1d0bc1273a9ce4a21d',1,'pga460.c']]],
+  ['set_5fvector',['set_vector',['../bmi160_8h.html#a06259a80ce4dd043228bc6c616774ebf',1,'bmi160.h']]],
+  ['setstate',['setState',['../struct_l_e_d___params.html#ad47abdd61ebfc122bd9a0d361abebadb',1,'LED_Params']]],
+  ['significant_5fmotion',['SIGNIFICANT_MOTION',['../bmi160_8h.html#a1bf717be6718daa4b0766fb83f934930',1,'bmi160.h']]],
+  ['skip_5fframe',['skip_frame',['../structbmi160__fifo__data__header__t.html#a9df15953989095abc56591dbd9ce8af3',1,'bmi160_fifo_data_header_t']]],
+  ['slaveaddress',['slaveAddress',['../struct_o_p_t3001___h_w_attrs.html#a94b434fee3bd00a6b2bb262521a6c8f8',1,'OPT3001_HWAttrs::slaveAddress()'],['../struct_t_m_p006___h_w_attrs.html#abc9919f37b208633c5f8681d68393c19',1,'TMP006_HWAttrs::slaveAddress()'],['../struct_t_m_p007___h_w_attrs.html#a03d87ba205059fdaaf2de3302e40a5e2',1,'TMP007_HWAttrs::slaveAddress()']]],
+  ['slow_5fmotion',['SLOW_MOTION',['../bmi160_8h.html#a7f072178c3afd368a8e8f234a62a2a9b',1,'bmi160.h']]],
+  ['srr_5fcmd_5fsize',['SRR_CMD_SIZE',['../pga460_8c.html#a83d1728952c722d1211f87151a8c9219',1,'pga460.c']]],
+  ['srw_5fcmd_5fsize',['SRW_CMD_SIZE',['../pga460_8c.html#aa3dad95f0adc31d2f35a496290fe48c0',1,'pga460.c']]],
+  ['start_5ffoc_5faccel_5fgyro',['START_FOC_ACCEL_GYRO',['../bmi160_8h.html#a0d01007bbef0084135bf1b5e728b7bbc',1,'bmi160.h']]],
+  ['state',['state',['../struct_l_e_d___object.html#a73b5673feb140738b3d73940ffdd5c10',1,'LED_Object']]],
+  ['step_5fconfig_5fnormal',['STEP_CONFIG_NORMAL',['../bmi160_8h.html#ae9f71762dd50836c737cb6efb747124a',1,'bmi160.h']]],
+  ['step_5fconfig_5frobust',['STEP_CONFIG_ROBUST',['../bmi160_8h.html#a211a028910f6eba836d9734585bce94e',1,'bmi160.h']]],
+  ['step_5fconfig_5fsensitive',['STEP_CONFIG_SENSITIVE',['../bmi160_8h.html#a37c9c83d1c167bcf34c27b1f5d24e743',1,'bmi160.h']]],
+  ['success',['SUCCESS',['../bma2x2_8h.html#aa90cac659d18e8ef6294c7ae337f6b58',1,'SUCCESS():&#160;bma2x2.h'],['../bme280_8h.html#aa90cac659d18e8ef6294c7ae337f6b58',1,'SUCCESS():&#160;bme280.h'],['../bmi160_8h.html#aa90cac659d18e8ef6294c7ae337f6b58',1,'SUCCESS():&#160;bmi160.h']]],
+  ['suspend_5fmode',['SUSPEND_MODE',['../bmi160_8h.html#afd9b460f3ca9bc5114419e2283f03981',1,'bmi160.h']]]
+];

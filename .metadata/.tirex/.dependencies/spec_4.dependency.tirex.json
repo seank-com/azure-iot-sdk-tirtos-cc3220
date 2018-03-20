@@ -1,0 +1,36 @@
+[
+   {
+      "packages" : [],
+      "compiler" : {
+         "location" : "na",
+         "specified" : "na",
+         "effective" : "na"
+      },
+      "files" : [
+         "+../../Board.h -> Board.h",
+         "+../../CC3220S_LAUNCHXL.c -> CC3220S_LAUNCHXL.c",
+         "+../../CC3220S_LAUNCHXL.h -> CC3220S_LAUNCHXL.h",
+         "+CC3220S_LAUNCHXL_TIRTOS.cmd -> CC3220S_LAUNCHXL_TIRTOS.cmd",
+         "+../../DBG.c -> DBG.c",
+         "+../../DBG.h -> DBG.h",
+         "+../../Monitor.c -> Monitor.c",
+         "+../../Monitor.h -> Monitor.h",
+         "+../../NWP.c -> NWP.c",
+         "+../../NWP.h -> NWP.h",
+         "+../../NetMgr.c -> NetMgr.c",
+         "+../../NetMgr.h -> NetMgr.h",
+         "+../../PowerHooks.c -> PowerHooks.c",
+         "+../../PowerHooks.h -> PowerHooks.h",
+         "+../../README.html -> README.html",
+         "+../../SensorData.h -> SensorData.h",
+         "+../../certs.c -> certs.c",
+         "+../../demo.c -> demo.c",
+         "+../main_tirtos.c -> main_tirtos.c",
+         "+../../startsntp.c -> startsntp.c",
+         "+../../wificonfig.h -> wificonfig.h",
+         "+../../../../../../../source/ti/boards/CC3220S_LAUNCHXL/Board.html -> Board.html"
+      ],
+      "name" : "na",
+      "default" : "na"
+   }
+]

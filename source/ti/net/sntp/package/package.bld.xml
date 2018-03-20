@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.net.sntp" version="1, 0, 0" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/package_ti.net.sntp.c"/>
+        <srcFile name="sntp.c"/>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="lib/sntp_sl.aem4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/sntp_sl/package/package_ti.net.sntp.oem4.dep" src="package/package_ti.net.sntp.c"/>
+        <srcFile name="package/lib/lib/sntp_sl/sntp.oem4.dep" src="sntp.c"/>
+        <srcFile name="lib/sntp_sl.arm4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/sntp_sl/package/package_ti.net.sntp.orm4.dep" src="package/package_ti.net.sntp.c"/>
+        <srcFile name="package/lib/lib/sntp_sl/sntp.orm4.dep" src="sntp.c"/>
+        <srcFile name="lib/sntp_sl.am4g.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/sntp_sl/package/package_ti.net.sntp.om4g.dep" src="package/package_ti.net.sntp.c"/>
+        <srcFile name="package/lib/lib/sntp_sl/sntp.om4g.dep" src="sntp.c"/>
+        <srcFile name="package/rel/ti_net_sntp.zip.dep" src="package/rel/ti_net_sntp.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.arm.elf.M4"
+            version="ti.targets.arm.elf.M4{1,0,16.9,3"
+            rawVersion="16.9.3"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="em4"
+            rootDir="/db/vendors/ti/arm/16.9.3.LTS/Linux"
+            os="undefined"
+            rts="ti.targets.arm.rtsarm">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="iar.targets.arm.M4"
+            version="iar.targets.arm.M4{1,0,8.11,1"
+            rawVersion="8.11.1.47"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="rm4"
+            rootDir="/db/vendors/iar/arm/8.11.1.47/Linux"
+            os="undefined"
+            rts="iar.targets.arm.rts">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.arm.M4"
+            version="gnu.targets.arm.M4{1,0,6.3,1"
+            rawVersion="6.3.1"
+            platform="ti.platforms.tiva:TM4C1294NCPDT"
+            isa="v7M4"
+            suffix="m4g"
+            rootDir="/db/vendors/linaro/gcc-arm-none-eabi-6-2017-q1-update"
+            os="undefined"
+            rts="gnu.targets.arm.rtsv7M">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    <library name="lib/sntp_sl"
+        pname="lib/sntp_sl.aem4"
+        profile="release"
+        target="ti.targets.arm.elf.M4"/>
+    <library name="lib/sntp_sl"
+        pname="lib/sntp_sl.arm4"
+        profile="release"
+        target="iar.targets.arm.M4"/>
+    <library name="lib/sntp_sl"
+        pname="lib/sntp_sl.am4g"
+        profile="release"
+        target="gnu.targets.arm.M4"/>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="ti_net_sntp"
+        pname="../../../../exports/ti_net_sntp.zip"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="sntp.h"/>
+        <file name="package.bld"/>
+        <file name="package/package.cfg.xdc.inc"/>
+        <file name="lib/sntp_sl.aem4"/>
+        <file name="package/package_ti.net.sntp.c"/>
+        <file name="sntp.c"/>
+        <file name="lib/sntp_sl.arm4"/>
+        <file name="lib/sntp_sl.am4g"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

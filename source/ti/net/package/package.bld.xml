@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.net" version="1, 0, 0" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/package_ti.net.c"/>
+        <srcFile name="certconv.c"/>
+        <srcFile name="ssock.c"/>
+        <srcFile name="ssock_sl.c"/>
+        <srcFile name="tls_sl.c"/>
+        <srcFile name="ssock_wolfssl.c"/>
+        <srcFile name="tls_wolfssl.c"/>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="lib/network_sl.aem4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network_sl/package/package_ti.net.oem4.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network_sl/certconv.oem4.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock.oem4.dep" src="ssock.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock_sl.oem4.dep" src="ssock_sl.c"/>
+        <srcFile name="package/lib/lib/network_sl/tls_sl.oem4.dep" src="tls_sl.c"/>
+        <srcFile name="lib/network_sl.arm4.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network_sl/package/package_ti.net.orm4.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network_sl/certconv.orm4.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock.orm4.dep" src="ssock.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock_sl.orm4.dep" src="ssock_sl.c"/>
+        <srcFile name="package/lib/lib/network_sl/tls_sl.orm4.dep" src="tls_sl.c"/>
+        <srcFile name="lib/network_sl.am4g.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network_sl/package/package_ti.net.om4g.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network_sl/certconv.om4g.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock.om4g.dep" src="ssock.c"/>
+        <srcFile name="package/lib/lib/network_sl/ssock_sl.om4g.dep" src="ssock_sl.c"/>
+        <srcFile name="package/lib/lib/network_sl/tls_sl.om4g.dep" src="tls_sl.c"/>
+        <srcFile name="lib/network_wolfssl.av7AF.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network_wolfssl/package/package_ti.net.ov7AF.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/certconv.ov7AF.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/ssock.ov7AF.dep" src="ssock.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/ssock_wolfssl.ov7AF.dep" src="ssock_wolfssl.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/tls_wolfssl.ov7AF.dep" src="tls_wolfssl.c"/>
+        <srcFile name="lib/network.av7AF.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network/package/package_ti.net.ov7AF.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network/certconv.ov7AF.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network/ssock.ov7AF.dep" src="ssock.c"/>
+        <srcFile name="lib/network_wolfssl.a86U.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network_wolfssl/package/package_ti.net.o86U.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/certconv.o86U.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/ssock.o86U.dep" src="ssock.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/ssock_wolfssl.o86U.dep" src="ssock_wolfssl.c"/>
+        <srcFile name="package/lib/lib/network_wolfssl/tls_wolfssl.o86U.dep" src="tls_wolfssl.c"/>
+        <srcFile name="lib/network.a86U.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/network/package/package_ti.net.o86U.dep" src="package/package_ti.net.c"/>
+        <srcFile name="package/lib/lib/network/certconv.o86U.dep" src="certconv.c"/>
+        <srcFile name="package/lib/lib/network/ssock.o86U.dep" src="ssock.c"/>
+        <srcFile name="package/rel/ti_net.zip.dep" src="package/rel/ti_net.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.arm.elf.M4"
+            version="ti.targets.arm.elf.M4{1,0,16.9,3"
+            rawVersion="16.9.3"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="em4"
+            rootDir="/db/vendors/ti/arm/16.9.3.LTS/Linux"
+            os="undefined"
+            rts="ti.targets.arm.rtsarm">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="iar.targets.arm.M4"
+            version="iar.targets.arm.M4{1,0,8.11,1"
+            rawVersion="8.11.1.47"
+            platform="ti.platforms.tiva:TM4C1294NCPDT:1"
+            isa="v7M4"
+            suffix="rm4"
+            rootDir="/db/vendors/iar/arm/8.11.1.47/Linux"
+            os="undefined"
+            rts="iar.targets.arm.rts">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.arm.M4"
+            version="gnu.targets.arm.M4{1,0,6.3,1"
+            rawVersion="6.3.1"
+            platform="ti.platforms.tiva:TM4C1294NCPDT"
+            isa="v7M4"
+            suffix="m4g"
+            rootDir="/db/vendors/linaro/gcc-arm-none-eabi-6-2017-q1-update"
+            os="undefined"
+            rts="gnu.targets.arm.rtsv7M">
+            <model endian="little"
+                codeModel="thumb2"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.arm.GCArmv7AF"
+            version="gnu.targets.arm.GCArmv7AF{1,0,4.7,3"
+            rawVersion="4.7.3"
+            platform="host.platforms.arm"
+            isa="v7A"
+            suffix="v7AF"
+            rootDir="/db/builds/mgrosen/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/sysroots/i686-arago-linux/usr"
+            os="Linux"
+            rts="gnu.targets.arm.rtsv7A">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+        <target name="gnu.targets.Linux86"
+            version="gnu.targets.Linux86{1,0,4.3,4"
+            rawVersion="4.3.4"
+            platform="host.platforms.PC"
+            isa="i686"
+            suffix="86U"
+            rootDir="/db/toolsrc/library/vendors2005/opensource/gcc/4.3.4/Linux"
+            os="Linux"
+            rts="gnu.targets.rts86U">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    <library name="lib/network_sl"
+        pname="lib/network_sl.aem4"
+        profile="release"
+        target="ti.targets.arm.elf.M4"/>
+    <library name="lib/network_sl"
+        pname="lib/network_sl.arm4"
+        profile="release"
+        target="iar.targets.arm.M4"/>
+    <library name="lib/network_sl"
+        pname="lib/network_sl.am4g"
+        profile="release"
+        target="gnu.targets.arm.M4"/>
+    <library name="lib/network_wolfssl"
+        pname="lib/network_wolfssl.av7AF"
+        profile="release"
+        target="gnu.targets.arm.GCArmv7AF"/>
+    <library name="lib/network"
+        pname="lib/network.av7AF"
+        profile="release"
+        target="gnu.targets.arm.GCArmv7AF"/>
+    <library name="lib/network_wolfssl"
+        pname="lib/network_wolfssl.a86U"
+        profile="release"
+        target="gnu.targets.Linux86"/>
+    <library name="lib/network"
+        pname="lib/network.a86U"
+        profile="release"
+        target="gnu.targets.Linux86"/>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="ti_net"
+        pname="../../../exports/ti_net.zip"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="certconv.h"/>
+        <file name="common.h"/>
+        <file name="socket.h"/>
+        <file name="ssock.h"/>
+        <file name="ssock_sl.h"/>
+        <file name="ssock_wolfssl.h"/>
+        <file name="tls.h"/>
+        <file name="tls_sl.h"/>
+        <file name="package.bld"/>
+        <file name="package/package.cfg.xdc.inc"/>
+        <file name="lib/network_sl.aem4"/>
+        <file name="package/package_ti.net.c"/>
+        <file name="certconv.c"/>
+        <file name="ssock.c"/>
+        <file name="ssock_sl.c"/>
+        <file name="tls_sl.c"/>
+        <file name="lib/network_sl.arm4"/>
+        <file name="lib/network_sl.am4g"/>
+        <file name="lib/network_wolfssl.av7AF"/>
+        <file name="ssock_wolfssl.c"/>
+        <file name="tls_wolfssl.c"/>
+        <file name="lib/network.av7AF"/>
+        <file name="lib/network_wolfssl.a86U"/>
+        <file name="lib/network.a86U"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

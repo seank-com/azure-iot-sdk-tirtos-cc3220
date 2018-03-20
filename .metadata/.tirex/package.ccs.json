@@ -1,0 +1,13 @@
+[
+    {
+        "rootMacroName": "COM_TI_AZURE_CC32XX_INSTALL_DIR",
+        "compilerIncludePath": [ "${COM_TI_AZURE_CC32XX_INSTALL_DIR}/source" ],
+        "linkerSearchPath": [ "${COM_TI_AZURE_CC32XX_INSTALL_DIR}/source" ],
+        "compilerSymbols": [ ],
+
+        "properties": {
+            "rtsc.repoMacroName": "COM_TI_AZURE_CC32XX_INSTALL_DIR_REPOS",
+            "rtsc.repositories": [ "source" ]
+        }
+    }
+]

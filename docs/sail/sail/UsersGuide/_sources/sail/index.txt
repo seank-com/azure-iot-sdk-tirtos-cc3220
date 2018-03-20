@@ -1,0 +1,12 @@
+SAIL Plugin User's Guide
+===========================
+
+The SAIL Plugin User's Guide gives brief introduction of the SAIL plugin. It also gives information about the structure of example application in SAIL plugin.
+
+**NOTE: Please refer to SDK user guide for more information on Kernels (TI-RTOS, FreeRTOS), TI Drivers and other third party components. This User Guide covers only the SAIL Plugin related information**
+
+.. toctree::
+   :maxdepth: 1
+
+   introduction
+   example

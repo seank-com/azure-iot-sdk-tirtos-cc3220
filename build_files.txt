@@ -1,0 +1,37 @@
+During build the following files are modified
+
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/.xdcenv.mak
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/.xdcenv.mak
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/.xdcenv.mak
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/.xdcenv.mak
+
+and the following are created
+
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/.dlls
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/.executables
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/.interfaces
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/.libraries
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/lib/
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/package.mak
+    source/third_party/azure-iot-sdk-c/c-utility/build_all/tirtos/package/
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/.dlls
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/.executables
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/.interfaces
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/.libraries
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/lib/
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/package.mak
+    source/third_party/azure-iot-sdk-c/iothub_client/build/tirtos/package/
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/.dlls
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/.executables
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/.interfaces
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/.libraries
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/lib/
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/package.mak
+    source/third_party/azure-iot-sdk-c/serializer/build/tirtos/package/
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/.dlls
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/.executables
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/.interfaces
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/.libraries
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/lib/
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/package.mak
+    source/third_party/azure-iot-sdk-c/umqtt/build_all/tirtos/package/

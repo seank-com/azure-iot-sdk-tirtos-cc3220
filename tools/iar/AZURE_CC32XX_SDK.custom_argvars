@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<iarUserArgVars>
+  <group active="true" name="AZURE_SIMPLELINK_CC32XX_SDK">
+    <variable>
+      <name>XDCPATH</name>
+      <value>c:/ti/simplelink_cc32xx_sdk_1_40_01_00/kernel/tirtos/packages;c:/ti/simplelink_cc32xx_sdk_1_40_01_00/source</value>
+    </variable>
+    <variable>
+      <name>XDCROOT</name>
+      <value>c:/ti/xdctools_3_50_02_20_core</value>
+    </variable>
+    <variable>
+      <name>FREERTOS_INSTALL_DIR</name>
+      <value>c:/FreeRTOSv9.0.0</value>
+    </variable>
+    <variable>
+      <name>SIMPLELINK_CC32XX_SDK_INSTALL_DIR</name>
+      <value>c:/ti/simplelink_cc32xx_sdk_1_40_01_00</value>
+    </variable>
+    <variable>
+      <name>AZURE_CC32XX_INSTALL_DIR</name>
+      <value>c:/ti/azure_cc3220_1_00_00_10</value>
+    </variable>
+    <variable>
+      <name>EXAMPLE_ROOT</name>
+      <value>c:/ti/azure_cc3220_1_00_00_10/tools/iar</value>
+    </variable>
+  </group>
+</iarUserArgVars>
