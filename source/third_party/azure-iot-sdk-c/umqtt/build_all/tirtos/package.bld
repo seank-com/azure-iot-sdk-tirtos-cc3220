@@ -6,44 +6,15 @@ var Build = xdc.useModule('xdc.bld.BuildEnvironment');
 var Pkg = xdc.useModule('xdc.bld.PackageContents');
 
 /* make command to search for the srcs */
-Pkg.makePrologue = "vpath %.c ../../src ../../adapters";
+Pkg.makePrologue = "vpath %.c ../../src";
 
 /* lib/ is a generated directory that 'xdc clean' should remove */
 Pkg.generatedFiles.$add("lib/");
 
 var SRCS = [
-    "agenttime.c", 
-    "base64.c",
-    "buffer.c",
-    "consolelogger.c",
-	"constbuffer.c",
-    "crt_abstractions.c",
-    "doublylinkedlist.c",
-    "gballoc.c",
-    "hmac.c",
-    "hmacsha256.c",
-    "httpapi_tirtos.c",
-    "httpapiex.c",
-    "httpapiexsas.c",
-    "httpheaders.c",
-    "lock_pthreads.c",
-    "map.c",
-    "platform_tirtos.c",
-    "sastoken.c",
-    "sha1.c",
-    "sha224.c",
-    "sha384-512.c",
-    "strings.c",
-    "string_tokenizer.c",
-    "threadapi_pthreads.c",
-    "tickcounter_tirtos.c",
-    "tlsio_sl.c",
-    "urlencode.c",
-    "usha.c",
-    "vector.c",
-    "xio.c",
-    "xlogging.c",
-    "optionhandler.c"
+    "mqtt_client.c", 
+    "mqtt_codec.c",
+    "mqtt_message.c"
 ];
 
 /* Paths to external source libraries */
@@ -52,7 +23,7 @@ xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
 var slIncs = "";
 var ndkIncs = "";
 var wolfsslIncs = "";
-var commonIncs = "-I../../inc -I../../inc/azure_c_shared_utility  -I../../pal/linux ";
+var umqttIncs = "-I../../inc -I../../../c-utility/inc ";
 var pthreadIncs = "";
 var cgtIncs = "";
 
@@ -127,17 +98,17 @@ if (ndkIncs != "") {
 for (var i = 0; i < Build.targets.length; i++) {
     var profile = "release";
     var target = Build.targets[i];
-    var extraOpts = commonIncs + cgtIncs + pthreadIncs;
+    var extraOpts = umqttIncs + cgtIncs + pthreadIncs;
 
     if (slIncs != "") {
-        Pkg.addLibrary("lib/common_sl", target, { profile: profile,
+        Pkg.addLibrary("lib/umqtt_sl", target, { profile: profile,
             defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE " + extraOpts, incs: slIncs
         }).addObjects(SRCS);
     }
 
     if (ndkIncs != "") {
         if (wolfsslIncs != "") {
-             Pkg.addLibrary("lib/common_ndk_wolfssl", target, {
+             Pkg.addLibrary("lib/umqtt_ndk_wolfssl", target, {
                 profile: profile,
                 defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS "
                         + extraOpts,
@@ -145,7 +116,7 @@ for (var i = 0; i < Build.targets.length; i++) {
             }).addObjects(SRCS)
         }
 
-        Pkg.addLibrary("lib/common_ndk", target, { profile: profile,
+        Pkg.addLibrary("lib/umqtt_ndk", target, { profile: profile,
             defs: "-DNET_NDK " + extraOpts, incs: ndkIncs
         }).addObjects(SRCS);
     }

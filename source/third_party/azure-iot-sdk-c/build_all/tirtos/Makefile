@@ -28,12 +28,13 @@ export XDCOPTIONS
 #     http://rtsc.eclipse.org/docs-tip/Command_-_xdc#Environment_Variables
 #
 XDCARGS= \
-    CC3200SDK=$(CC3200SDK_INSTALLATION_DIR) \
-    BIOS=$(BIOS_INSTALLATION_DIR) \
-    ti.targets.arm.elf.M4=\"$(ti.targets.arm.elf.M4)\"
+    CC32XXSDK=\"$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)\" \
+    BIOS=\"$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/kernel/tirtos\" \
+    ti.targets.arm.elf.M4=\"$(ti.targets.arm.elf.M4)\" \
+	
 
 # Set XDCPATH to contain necessary repositories.
-XDCPATH = $(NS_INSTALLATION_DIR)/packages;$(BIOS_INSTALLATION_DIR)/packages;$(TIRTOS_INSTALLATION_DIR)/packages;$(WOLFSSL_INSTALLATION_DIR)/tirtos/packages;$(NDK_INSTALLATION_DIR)/packages;$(CC3200SDK_INSTALLATION_DIR)/simplelink_extlib/provisioninglib
+XDCPATH = $(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/source;$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/kernel/tirtos/packages;$(NS_INSTALL_DIR)/source;
 export XDCPATH
 
 #
@@ -41,8 +42,8 @@ export XDCPATH
 # Note that XDCBUILDCFG points to the ns.bld file which uses
 # the arguments specified by XDCARGS
 #
-XDC = $(XDCTOOLS_INSTALLATION_DIR)/xdc XDCARGS="$(XDCARGS)" XDCBUILDCFG=./azureiot.bld
-XS = $(XDCTOOLS_INSTALLATION_DIR)/xs
+XDC = $(XDC_INSTALL_DIR)/xdc $(JOBS) XDCARGS="$(XDCARGS)" XDCBUILDCFG=./azureiot.bld
+XS = $(XDC_INSTALL_DIR)/xs
 
 ######################################################
 ## Shouldnt have to modify anything below this line ##

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <ti/net/tls.h>
 #include <ti/net/http/httpcli.h>
 
 #include "azure_c_shared_utility/httpapi.h"
@@ -12,6 +13,14 @@
 #include "azure_c_shared_utility/xlogging.h"
 
 #define CONTENT_BUF_LEN     128
+
+/* USER STEP: Flash the CA root certificate to this location */
+#define SL_SSL_CA_CERT "/cert/ms.der"
+
+typedef struct {
+    HTTPCli_Handle cli;
+    TLS_Handle tlsH;
+} HTTPAPI_Object;
 
 static const char* getHttpMethod(HTTPAPI_REQUEST_TYPE requestType)
 {
@@ -60,38 +69,88 @@ HTTP_HANDLE HTTPAPI_CreateConnection(const char* hostName)
 {
     int ret;
     struct sockaddr addr;
-    HTTPCli_Handle cli;
+    HTTPCli_Params httpParams;
+    bool error = false;
+    HTTPAPI_Object * apiH;
+
+    apiH = malloc(sizeof(HTTPAPI_Object));
+    if (!apiH) {
+        LogError("Error creating HTTPAPI object\n");
+        error = true;
+        goto error;
+    }
+
+    apiH->tlsH = TLS_create(TLS_METHOD_CLIENT_TLSV1_2);
+    if (!apiH->tlsH) {
+        LogError("Error creating TLS context\n");
+        error = true;
+        goto error;
+    }
+
+    ret = TLS_setCertFile(apiH->tlsH, TLS_CERT_TYPE_CA, TLS_CERT_FORMAT_DER,
+           SL_SSL_CA_CERT);
+    if (ret < 0) {
+        LogError("Error TLS setCertFile %d\n", ret);
+        error = true;
+        goto error;
+    }
+
+    HTTPCli_Params_init(&httpParams);
+    httpParams.tls = apiH->tlsH;
 
     ret = HTTPCli_initSockAddr(&addr, hostName, 0);
     if (ret < 0) {
 		LogError("HTTPCli_initSockAddr failed, ret=%d", ret);
-        return (NULL);
+        error = true;
+        goto error;        
     }
     ((struct sockaddr_in *) (&addr))->sin_port = htons(HTTPStd_SECURE_PORT);
 
-    cli = HTTPCli_create();
-    if (cli == NULL) {
+    apiH->cli = HTTPCli_create();
+    if (apiH->cli == NULL) {
 		LogError("HTTPCli_create failed");
-        return (NULL);
+        error = true;
+        goto error;
     }
 
-    ret = HTTPCli_connect(cli, &addr, HTTPCli_TYPE_TLS, NULL);
+    ret = HTTPCli_connect(apiH->cli, &addr, HTTPCli_TYPE_TLS, &httpParams);
     if (ret < 0) {
 		LogError("HTTPCli_connect failed, ret=%d", ret);
-        HTTPCli_delete(&cli);
-        return (NULL);
+        error = true;
+        goto error;
     }
-     
-    return ((HTTP_HANDLE) cli);
+
+error:
+    if (error) {
+        if (apiH->tlsH != NULL) {
+            TLS_delete(&apiH->tlsH);
+        }
+        if (apiH->cli != NULL) {
+            HTTPCli_delete(&apiH->cli);
+        }
+        if (apiH != NULL) {
+            free(apiH);
+        }
+    }
+
+    return ((HTTP_HANDLE)apiH);
 }
 
 void HTTPAPI_CloseConnection(HTTP_HANDLE handle)
 {
-    HTTPCli_Handle cli = (HTTPCli_Handle) handle;
+    HTTPAPI_Object * apiH = (HTTPAPI_Object *)handle;
 
-    if (cli) {
-        HTTPCli_disconnect(cli);
-        HTTPCli_delete(&cli);
+    if (apiH->cli != NULL) {
+        HTTPCli_disconnect(apiH->cli);
+        HTTPCli_delete(&(apiH->cli));
+    }
+
+    if (apiH->tlsH != NULL) {
+        TLS_delete(&(apiH->tlsH));
+    }
+
+    if (apiH != NULL) {
+        free(apiH);
     }
 }
 
@@ -102,7 +161,8 @@ HTTPAPI_RESULT HTTPAPI_ExecuteRequest(HTTP_HANDLE handle,
         HTTP_HEADERS_HANDLE responseHeadersHandle,
         BUFFER_HANDLE responseContent)
 {
-    HTTPCli_Handle cli = (HTTPCli_Handle) handle;
+    HTTPAPI_Object * apiH = (HTTPAPI_Object *)handle; 
+    HTTPCli_Handle cli = apiH->cli;
     int ret;
     int offset;
     size_t cnt;
