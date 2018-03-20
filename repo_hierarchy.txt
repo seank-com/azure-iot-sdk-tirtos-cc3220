@@ -1,0 +1,47 @@
+├─Azure/azure-c-shared-utility
+│ ├─Azure/azure-ctest
+│ ├─Azure/umock-c
+│ │ ├─Azure/azure-ctest
+│ │ └─Azure/azure-c-testrunnerswitcher
+│ └─Azure/azure-c-testrunnerswitcher
+├─Azure/azure-umqtt-c
+│ ├─Azure/azure-c-shared-utility
+│ │ ├─Azure/azure-ctest
+│ │ ├─Azure/umock-c
+│ │ │ ├─Azure/azure-ctest
+│ │ │ └─Azure/azure-c-testrunnerswitcher
+│ │ └─Azure/azure-c-testrunnerswitcher
+│ ├─Azure/umock-c
+│ │ ├─Azure/azure-ctest
+│ │ └─Azure/azure-c-testrunnerswitcher
+│ ├─Azure/azure-c-testrunnerswitcher
+│ └─Azure/azure-ctest
+├─Azure/azure-uamqp-c
+│ ├─Azure/azure-c-shared-utility
+│ │ ├─Azure/azure-ctest
+│ │ ├─Azure/umock-c
+│ │ │ ├─Azure/azure-ctest
+│ │ │ └─Azure/azure-c-testrunnerswitcher
+│ │ └─Azure/azure-c-testrunnerswitcher
+│ ├─Azure/azure-ctest
+│ ├─Azure/umock-c
+│ │ ├─Azure/azure-ctest
+│ │ └─Azure/azure-c-testrunnerswitcher
+│ └─Azure/azure-c-testrunnerswitcher
+├─kgabis/parson
+├─Azure/azure-uhttp-c
+│ └─Azure/azure-c-shared-utility
+│   ├─Azure/azure-ctest
+│   ├─Azure/umock-c
+│   │ ├─Azure/azure-ctest
+│   │ └─Azure/azure-c-testrunnerswitcher
+│   └─Azure/azure-c-testrunnerswitcher
+├─Microsoft/RIoT
+└─Azure/azure-utpm-c
+  └─Azure/azure-c-shared-utility
+    ├─Azure/azure-ctest
+    ├─Azure/umock-c
+    │ ├─Azure/azure-ctest
+    │ └─Azure/azure-c-testrunnerswitcher
+    └─Azure/azure-c-testrunnerswitcher
+    
