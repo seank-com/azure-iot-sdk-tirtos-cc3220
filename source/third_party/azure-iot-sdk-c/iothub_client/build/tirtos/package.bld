@@ -32,7 +32,6 @@ xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
 var slIncs = "";
 var ndkIncs = "";
 var wolfsslIncs = "";
-var iotclientIncs = "-I../../inc -I../../../c-utility/inc -I../../../c-utility/inc/azure_c_shared_utility -I../../../c-utility/pal/linux "
 var iotclientIncs = "-I../../inc -I../../../c-utility/inc -I../../../c-utility/inc/azure_c_shared_utility -I../../../umqtt/inc "
 	+"-I../../../deps/parson ";
 var pthreadIncs = "";
