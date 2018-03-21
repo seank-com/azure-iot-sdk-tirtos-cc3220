@@ -59,5 +59,6 @@ $ git status
 - copy ```c:\azure\azure-iot-sdk-c``` to ```C:\ti\azure_cc3220_1_00_00_180302\source\third_party\azure-iot-sdk-c```
 - delete ```C:\ti\azure_cc3220_1_00_00_180302\source\third_party\azure-iot-sdk-c\.git```
 - Now, using the WinDiff above update the new source with the changes indicated
-
-This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/1) demonstrates how we did it.
+  *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/1) demonstrates how we did it.*
+- Next take what you learned and create build scripts for new features
+  *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/2) demonstrates how we did it.*
