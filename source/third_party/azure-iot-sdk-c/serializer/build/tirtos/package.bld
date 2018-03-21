@@ -35,17 +35,24 @@ var slIncs = "";
 var ndkIncs = "";
 var wolfsslIncs = "";
 var serializerIncs = "-I../../inc -I../../../c-utility/inc -I../../../c-utility/inc/azure_c_shared_utility -I../../../c-utility/pal/linux "
-    + "-I../../../iothub_client/inc -I../../../deps/parson ";
+    + "-I../../../iothub_client/inc -I../../../deps/parson -DDECIMAL_DIG=16 ";  /* TODO: hack to allow compilation */
 var pthreadIncs = "";
 
 /* Parse out the XDCARGS options for the library source paths */
 for (x = 0; x < xdcargs.length; x++) {
+    if (xdcargs[x].match(/^ti.targets.arm.elf.M4=/)) {
+        cgtIncs = (xdcargs[x] + "").replace(/'/g, '');
+        cgtIncs = cgtIncs.substring(cgtIncs.indexOf('=') + 1);
+        if (cgtIncs != "") {
+            cgtIncs = "-I" + cgtIncs + "/include ";
+        }
+    }
 
-    if (xdcargs[x].match(/^CC3200SDK=/)) {
+    if (xdcargs[x].match(/^CC32XXSDK=/)) {
         slIncs = (xdcargs[x] + "").replace(/'/g, '');
         slIncs = slIncs.substring(slIncs.indexOf('=') + 1);
         if (slIncs != "") {
-            slIncs += "/simplelink";
+            slIncs += "/source";
             slIncs = "-I" + slIncs + " -I" + slIncs + "/include ";
         }
     }
@@ -102,7 +109,7 @@ if (ndkIncs != "") {
 for (var i = 0; i < Build.targets.length; i++) {
     var profile = "release";
     var target = Build.targets[i];
-    var extraOpts = serializerIncs + pthreadIncs;
+    var extraOpts = cgtIncs + serializerIncs + pthreadIncs;
 
     if (slIncs != "") {
         Pkg.addLibrary("lib/serializer_sl", target, { profile: profile,
