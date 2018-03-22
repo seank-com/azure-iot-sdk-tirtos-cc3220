@@ -1,7 +1,7 @@
 /*
  *  ======== package.bld ========
  */
- 
+
 var Build = xdc.useModule('xdc.bld.BuildEnvironment');
 var Pkg = xdc.useModule('xdc.bld.PackageContents');
 
@@ -12,11 +12,12 @@ Pkg.makePrologue = "vpath %.c ../../src ../../adapters";
 Pkg.generatedFiles.$add("lib/");
 
 var SRCS = [
-    "agenttime.c", 
+    "agenttime.c",
+    "base32.c",
     "base64.c",
     "buffer.c",
     "consolelogger.c",
-	"constbuffer.c",
+    "constbuffer.c",
     "crt_abstractions.c",
     "doublylinkedlist.c",
     "gballoc.c",

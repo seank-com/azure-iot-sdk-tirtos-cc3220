@@ -15,6 +15,9 @@
 #include <ws2tcpip.h>
 #include <windows.h>
 #else
+#ifdef TI_RTOS
+#define ti_sysbios_posix_sys_types__include
+#endif
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -46,6 +49,28 @@ enum TpmSimCommands
     Remote_SessionEnd = 20,
     Remote_Stop = 21,
 };
+
+#ifdef TI_RTOS
+
+int shutdown_unsupported()
+{
+  return 0;
+}
+#define shutdown(...) shutdown_unsupported()
+
+u_int32_t inet_addr(const char* str)
+{
+  u_int32_t a, b, c, d, val;
+  sscanf(str, "%d.%d.%d.%d", &a, &b, &c, &d);
+  a = (a << 24) & 0xff000000;
+  b = (b << 16) & 0xff0000;
+  c = (c << 8) & 0xff00;
+  d = d & 0xff;
+  val = a | b | c | d;
+  return htonl(val);
+}
+
+#endif
 
 static int add_to_buffer(TPM_SOCKET_INFO* socket_info, const unsigned char* bytes, size_t length)
 {

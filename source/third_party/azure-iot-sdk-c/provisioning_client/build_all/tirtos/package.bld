@@ -10,6 +10,7 @@ Pkg.makePrologue = "vpath %.c ../../src "
   + "../../adapters "
   +"../../deps/RIoT/Emulator/DICE "
   +"../../deps/RIoT/Emulator/RIoT/RIoTCrypt "
+  +"../../deps/utpm/src "
   +"../../../deps/parson";
 
 /* lib/ is a generated directory that 'xdc clean' should remove */
@@ -32,6 +33,7 @@ var SRCS = [
     "prov_transport_mqtt_ws_client.c",
     "hsm_client_data.c",
     "hsm_client_riot.c",
+    "hsm_client_tpm.c",
     "DiceSha256.c",
     "RiotAes128.c",
     "RiotAesTables.c",
@@ -43,7 +45,13 @@ var SRCS = [
     "RiotKdf.c",
     "RiotSha256.c",
     "RiotX509Bldr.c",
-    "parson.c",
+    "Marshal.c",
+    "Memory.c",
+    "tpm_codec.c",
+    "gbfiledescript.c",
+    "tpm_comm_emulator.c",
+    "tpm_socket_comm.c",
+    "parson.c"
 ];
 
 /* Paths to external source libraries */
@@ -57,6 +65,7 @@ var provClientIncs = "-I../../inc "
   +"-I../../deps/RIoT/Emulator/DICE "
   +"-I../../deps/RIoT/Emulator/RIoT "
   +"-I../../deps/RIoT/Emulator/RIoT/RIoTCrypt/include "
+  +"-I../../deps/utpm/inc "
   +"-I../../../c-utility/pal/linux "
   +"-I../../../c-utility/inc "
 	+"-I../../../deps/parson "
@@ -143,7 +152,9 @@ for (var i = 0; i < Build.targets.length; i++) {
 
     if (slIncs != "") {
         Pkg.addLibrary("lib/provisioning_client_sl", target, { profile: profile,
-            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE -DUSE_PROV_MODULE -DHSM_TYPE_X509 " + extraOpts, incs: slIncs
+            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE -DUSE_PROV_MODULE -DHSM_TYPE_X509 -D_WINSOCK_DEPRECATED_NO_WARNINGS "
+              + extraOpts,
+            incs: slIncs
         }).addObjects(SRCS);
     }
 
@@ -151,14 +162,16 @@ for (var i = 0; i < Build.targets.length; i++) {
         if (wolfsslIncs != "") {
              Pkg.addLibrary("lib/provisioning_client_ndk_wolfssl", target, {
                 profile: profile,
-                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS -DUSE_PROV_MODULE -DHSM_TYPE_X509 "
-                        + extraOpts,
+                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS -DUSE_PROV_MODULE -DHSM_TYPE_X509 -D_WINSOCK_DEPRECATED_NO_WARNINGS "
+                  + extraOpts,
                 incs: ndkIncs + wolfsslIncs
             }).addObjects(SRCS)
         }
 
         Pkg.addLibrary("lib/provisioning_client_ndk", target, { profile: profile,
-            defs: "-DNET_NDK -DUSE_PROV_MODULE -DHSM_TYPE_X509 " + extraOpts, incs: ndkIncs
+            defs: "-DNET_NDK -DUSE_PROV_MODULE -DHSM_TYPE_X509 -D_WINSOCK_DEPRECATED_NO_WARNINGS "
+              + extraOpts,
+            incs: ndkIncs
         }).addObjects(SRCS);
     }
 }
