@@ -4,8 +4,6 @@
 #ifndef _BASETYPES_H
 #define _BASETYPES_H
 
-#include <stdint.h>
-
 // NULL definition
 #ifndef         NULL
 #define         NULL        (0)

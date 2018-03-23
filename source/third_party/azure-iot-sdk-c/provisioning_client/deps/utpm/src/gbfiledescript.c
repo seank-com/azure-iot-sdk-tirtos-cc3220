@@ -10,16 +10,9 @@
 #include <Windows.h>
 #include <basetsd.h>
 #else
-#ifdef TI_RTOS
-// For TI we don't want to include the headers above
-// but just like WIN32 we want to stub out all the
-// functions below
-#define WIN32
-#else
-#include <sys/stat.h>
+#include <sys/stat.h> 
 #include <fcntl.h>
 #include <unistd.h>
-#endif
 #endif
 #include "azure_utpm_c/gbfiledescript.h"
 
