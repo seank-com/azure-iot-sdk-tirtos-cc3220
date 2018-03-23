@@ -59,9 +59,9 @@ $ git status
 - copy ```c:\azure\azure-iot-sdk-c``` to ```C:\ti\azure_cc3220_1_00_00_180302\source\third_party\azure-iot-sdk-c```
 - delete ```C:\ti\azure_cc3220_1_00_00_180302\source\third_party\azure-iot-sdk-c\.git```
 - Now, using the WinDiff above update the new source with the changes indicated
-  *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/1) demonstrates how we did it.*
+  - *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/1) demonstrates how we did it.*
 - Next take what you learned and create build scripts for new features
-  *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/2) demonstrates how we did it.*
+  - *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/2) demonstrates how we did it.*
 
 ## Build Provisioning Sample
 
@@ -118,7 +118,7 @@ $ git status
     - Click **UserFiles**
     - Select ```Select MCU Image``` from **Action** dropdown
     - Click **Browse**
-      - Navigate to the project in your workspace ```C:\Users\seank\workspace_v8\prov_dev_client_ll_sample_CC3220SF_LAUNCHXL_tirtos_ccs\Debug``` 
+      - Navigate to the project in your workspace ```C:\Users\seank\workspace_v8\prov_dev_client_ll_sample_CC3220SF_LAUNCHXL_tirtos_ccs\Debug```
       - Select ```iothub_client_sample_mqtt_CC3220SF_LAUNCHXL_tirtos_ccs.bin```
       - Click **Browse**
       - Navigate to ```C:\ti\simplelink_cc32xx_sdk_1_40_01_00\tools\cc32xx_tools\certificate-playground```
