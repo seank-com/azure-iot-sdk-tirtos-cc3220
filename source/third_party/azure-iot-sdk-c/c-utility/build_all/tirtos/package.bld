@@ -16,20 +16,28 @@ var SRCS = [
     "base32.c",
     "base64.c",
     "buffer.c",
-    "consolelogger.c",
+//  "connection_string_parser.c",
+    "consolelogger.c", // tirtos
     "constbuffer.c",
+//   "constmap.c",
     "crt_abstractions.c",
     "doublylinkedlist.c",
+//   "gb_rand.c",
+//   "gb_stdio.c",
+//   "gb_time.c",
     "gballoc.c",
+//  "gbnetwork.c",
     "hmac.c",
     "hmacsha256.c",
-    "httpapi_tirtos.c",
+//  "http_proxy_io.c",
+    "httpapi_tirtos.c", // tirtos
     "httpapiex.c",
     "httpapiexsas.c",
     "httpheaders.c",
     "lock_pthreads.c",
     "map.c",
     "platform_tirtos.c",
+//  "optionhandler.c",
     "sastoken.c",
     "sha1.c",
     "sha224.c",
@@ -41,11 +49,14 @@ var SRCS = [
     "tlsio_sl.c",
     "urlencode.c",
     "usha.c",
+//  "uuid.c",
     "vector.c",
     "xio.c",
-    "xlogging.c",
+    "xlogging.c", // tirtos
     "optionhandler.c"
 ];
+
+var PPDS = "-DREFCOUNT_ATOMIC_DONTCARE -DNO_LOGGING ";
 
 /* Paths to external source libraries */
 xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
@@ -132,22 +143,23 @@ for (var i = 0; i < Build.targets.length; i++) {
 
     if (slIncs != "") {
         Pkg.addLibrary("lib/common_sl", target, { profile: profile,
-            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE " + extraOpts, incs: slIncs
+            defs: "-DNET_SL " + PPDS + extraOpts,
+            incs: slIncs
         }).addObjects(SRCS);
     }
 
     if (ndkIncs != "") {
         if (wolfsslIncs != "") {
-             Pkg.addLibrary("lib/common_ndk_wolfssl", target, {
+            Pkg.addLibrary("lib/common_ndk_wolfssl", target, {
                 profile: profile,
-                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS "
-                        + extraOpts,
+                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS " + PPDS + extraOpts,
                 incs: ndkIncs + wolfsslIncs
             }).addObjects(SRCS)
         }
 
         Pkg.addLibrary("lib/common_ndk", target, { profile: profile,
-            defs: "-DNET_NDK " + extraOpts, incs: ndkIncs
+            defs: "-DNET_NDK " + PPDS + extraOpts,
+            incs: ndkIncs
         }).addObjects(SRCS);
     }
 }
