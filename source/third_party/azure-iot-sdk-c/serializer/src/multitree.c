@@ -93,13 +93,15 @@ typedef enum CREATELEAF_RESULT_TAG
                             // Do not remove, or add new enum values below this one
 }CREATELEAF_RESULT;
 
+#ifndef NO_LOGGING
 static STATIC_VAR_UNUSED const char* CreateLeaf_ResultAsString[CREATELEAF_RESULT_COUNT] =
-{   
+{
     TOSTRING(CREATELEAF_OK),
     TOSTRING(CREATELEAF_ALREADY_EXISTS),
     TOSTRING(CREATELEAF_EMPTY_NAME),
     TOSTRING(CREATELEAF_ERROR)
 };
+#endif
 
 /*name cannot be empty, value can be empty or NULL*/
 #ifdef __APPLE__

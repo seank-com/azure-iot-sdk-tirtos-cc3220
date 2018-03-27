@@ -1,7 +1,7 @@
 /*
  *  ======== package.bld ========
  */
- 
+
 var Build = xdc.useModule('xdc.bld.BuildEnvironment');
 var Pkg = xdc.useModule('xdc.bld.PackageContents');
 
@@ -24,8 +24,7 @@ var SRCS = [
     "multitree.c",
     "schema.c",
     "schemalib.c",
-    "schemaserializer.c",
-    "parson.c"
+    "schemaserializer.c"
 ];
 
 /* Paths to external source libraries */
@@ -35,7 +34,7 @@ var slIncs = "";
 var ndkIncs = "";
 var wolfsslIncs = "";
 var serializerIncs = "-I../../inc -I../../../c-utility/inc -I../../../c-utility/inc/azure_c_shared_utility -I../../../c-utility/pal/linux "
-    + "-I../../../iothub_client/inc -I../../../deps/parson -DDECIMAL_DIG=16 ";  /* TODO: hack to allow compilation */
+    + "-I../../../iothub_client/inc -I../../../deps/parson ";  /* -DDECIMAL_DIG=16 TODO: hack to allow compilation */
 var pthreadIncs = "";
 
 /* Parse out the XDCARGS options for the library source paths */
