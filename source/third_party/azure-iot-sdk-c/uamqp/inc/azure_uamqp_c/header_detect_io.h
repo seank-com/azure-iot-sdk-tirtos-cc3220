@@ -19,7 +19,7 @@ extern "C" {
 	typedef struct AMQP_HEADER_TAG
 	{
 		const unsigned char* header_bytes;
-		size_t header_size;
+		const size_t header_size;
 	} AMQP_HEADER;
 
 	typedef struct HEADER_DETECT_ENTRY_TAG

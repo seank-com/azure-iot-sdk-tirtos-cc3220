@@ -145,6 +145,7 @@ static int send_header(CONNECTION_HANDLE connection)
     return result;
 }
 
+#ifndef NO_LOGGING
 static const char* get_frame_type_as_string(AMQP_VALUE descriptor)
 {
     const char* result;
@@ -192,6 +193,7 @@ static const char* get_frame_type_as_string(AMQP_VALUE descriptor)
 
     return result;
 }
+#endif
 
 static void log_incoming_frame(AMQP_VALUE performative)
 {

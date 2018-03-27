@@ -33,6 +33,12 @@ typedef enum IO_STATE_TAG
     SASL_HEADER_EXCHANGE_HEADER_RCVD, \
     SASL_HEADER_EXCHANGE_HEADER_EXCH
 
+// Suppress unused function warning for SASL_HEADER_EXCHANGE_STATEstrings
+#ifdef NO_LOGGING
+#define ENUM_TO_STRING_UNUSED
+#include "azure_c_shared_utility/macro_utils.h"
+#endif
+
 DEFINE_LOCAL_ENUM(SASL_HEADER_EXCHANGE_STATE, SASL_HEADER_EXCHANGE_STATE_VALUES)
 
 #define SASL_CLIENT_NEGOTIATION_STATE_VALUES \
@@ -255,6 +261,7 @@ static void on_underlying_io_error(void* context)
     }
 }
 
+#ifndef NO_LOGGING
 static const char* get_frame_type_as_string(AMQP_VALUE descriptor)
 {
     const char* result;
@@ -286,6 +293,7 @@ static const char* get_frame_type_as_string(AMQP_VALUE descriptor)
 
     return result;
 }
+#endif
 
 static void log_incoming_frame(AMQP_VALUE performative)
 {

@@ -45,11 +45,11 @@ typedef struct SESSION_INSTANCE_TAG
     handle handle_max;
     uint32_t remote_incoming_window;
     uint32_t remote_outgoing_window;
-    int is_underlying_connection_open : 1;
+    uint8_t is_underlying_connection_open : 1;
 } SESSION_INSTANCE;
 
 #define UNDERLYING_CONNECTION_NOT_OPEN 0
-#define UNDERLYING_CONNECTION_OPEN -1
+#define UNDERLYING_CONNECTION_OPEN 1
 
 static void session_set_state(SESSION_INSTANCE* session_instance, SESSION_STATE session_state)
 {
