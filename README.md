@@ -84,6 +84,7 @@ $ git status
 - Open ```main_tirtos.c```
   - Change ```iothub_client_sample_mqtt_run``` to ```prov_dev_client_ll_run```
 - Make other changes as necessary to compile
+  - *This [pull request](https://github.com/seank-com/azure-iot-sdk-tirtos-cc3220/pull/3) demonstrates how we did it.*
 
 ## Deploy Provisioning Sample
 
