@@ -32,7 +32,7 @@ static const char* JSON_NODE_KEY_NAME = "keyName";
 static const char* JSON_NODE_OPERATION_ID = "operationId";
 static const char* JSON_NODE_ASSIGNED_HUB = "assignedHub";
 static const char* JSON_NODE_TPM_NODE = "tpm";
-static const char* JSON_NODE_TRACKING_ID = "trackingId";
+/*static const char* JSON_NODE_TRACKING_ID = "trackingId";*/
 
 static const char* PROV_FAILED_STATUS = "failed";
 static const char* PROV_BLACKLISTED_STATUS = "blacklisted";

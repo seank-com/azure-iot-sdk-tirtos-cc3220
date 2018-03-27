@@ -17,16 +17,15 @@
 static XIO_HANDLE mqtt_transport_io(const char* fqdn, const HTTP_PROXY_OPTIONS* proxy_info)
 {
     XIO_HANDLE result;
-    HTTP_PROXY_IO_CONFIG proxy_config;
     TLSIO_CONFIG tls_io_config;
 
     memset(&tls_io_config, 0, sizeof(TLSIO_CONFIG));
     tls_io_config.hostname = fqdn;
     tls_io_config.port = MQTT_PORT_NUM;
 
-#ifdef TI_RTOS
-    proxy_info;
-#else
+#ifndef TI_RTOS
+    HTTP_PROXY_IO_CONFIG proxy_config;
+
     if (proxy_info != NULL)
     {
         /* Codes_PROV_TRANSPORT_MQTT_CLIENT_07_012: [ If proxy_info is not NULL, amqp_transport_io shall construct a HTTP_PROXY_IO_CONFIG object and assign it to TLSIO_CONFIG underlying_io_parameters ] */

@@ -7,8 +7,7 @@ var Pkg = xdc.useModule('xdc.bld.PackageContents');
 
 /* make command to search for the srcs */
 Pkg.makePrologue = "vpath %.c ../../src "
-  + "../../adapters "
-  +"../../../deps/parson";
+  + "../../adapters ";
 
 /* lib/ is a generated directory that 'xdc clean' should remove */
 Pkg.generatedFiles.$add("lib/");
@@ -25,9 +24,9 @@ var SRCS = [
     "prov_transport_http_client.c",
     "prov_transport_amqp_client.c",
     "prov_transport_amqp_common.c",
+    "prov_sasl_tpm.c",
     "prov_transport_mqtt_client.c",
-    "prov_transport_mqtt_common.c",
-    "parson.c"
+    "prov_transport_mqtt_common.c"
 ];
 
 var PPDS = "-DNO_LOGGING -DUSE_PROV_MODULE -DHSM_AUTH_TYPE_CUSTOM ";
@@ -123,7 +122,7 @@ if (ndkIncs != "") {
 }
 
 for (var i = 0; i < Build.targets.length; i++) {
-    var profile = "debug"; //"release";
+    var profile = "release";
     var target = Build.targets[i];
     var extraOpts = provClientIncs + cgtIncs + pthreadIncs;
 
