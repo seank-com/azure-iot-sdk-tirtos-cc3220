@@ -2087,6 +2087,7 @@ static int uploadMultipleBlock_thread(void* data)
         result = IoTHubClient_LL_UploadMultipleBlocksToBlobEx(llHandle, threadInfo->destinationFileName, threadInfo->uploadBlobMultiblockSavedData.getDataCallbackEx, threadInfo->context);
     }
 
+    UNUSED(result);
     return markThreadReadyToBeGarbageCollected(threadInfo);
 }
 

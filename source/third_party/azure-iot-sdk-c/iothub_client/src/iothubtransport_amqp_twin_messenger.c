@@ -64,6 +64,11 @@ static const char* TWIN_OPERATION_DELETE =				"DELETE";
 	TWIN_OPERATION_TYPE_PUT, \
 	TWIN_OPERATION_TYPE_DELETE
 
+// Suppress unused function warning for TWIN_OPERATION_TYPEstrings
+#ifdef NO_LOGGING
+#define ENUM_TO_STRING_UNUSED
+#include "azure_c_shared_utility/macro_utils.h"
+#endif
 
 DEFINE_LOCAL_ENUM(TWIN_OPERATION_TYPE, TWIN_OPERATION_TYPE_STRINGS);
 
@@ -77,15 +82,11 @@ DEFINE_LOCAL_ENUM(TWIN_OPERATION_TYPE, TWIN_OPERATION_TYPE_STRINGS);
 	TWIN_SUBSCRIPTION_STATE_UNSUBSCRIBE, \
 	TWIN_SUBSCRIPTION_STATE_UNSUBSCRIBING
 
-// Suppress unused function warning for TWIN_SUBSCRIPTION_STATEstrings 
-#ifdef __APPLE__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#endif
+// Suppress unused function warning for TWIN_SUBSCRIPTION_STATEstrings
+#define ENUM_TO_STRING_UNUSED
+#include "azure_c_shared_utility/macro_utils.h"
+
 DEFINE_LOCAL_ENUM(TWIN_SUBSCRIPTION_STATE, TWIN_SUBSCRIPTION_STATE_STRINGS);
-#ifdef __APPLE__
-#pragma clang diagnostic pop
-#endif
 
 typedef struct TWIN_MESSENGER_INSTANCE_TAG
 {

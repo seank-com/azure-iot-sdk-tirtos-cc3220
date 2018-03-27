@@ -317,7 +317,8 @@ static void attach_device_client_type_to_link(LINK_HANDLE link, STRING_HANDLE pr
             }
             else
             {
-                if ((result = amqpvalue_set_map_value(attach_properties, device_client_type_key_name, device_client_type_value)) != 0)
+                result = amqpvalue_set_map_value(attach_properties, device_client_type_key_name, device_client_type_value);
+                if (result != 0)
                 {
                     LogError("Failed to set the property map for the device client type (error code is: %d)", result);
                 }
@@ -627,7 +628,8 @@ static AMQP_VALUE on_message_received_internal_callback(const void* context, MES
     IOTHUB_MESSAGE_HANDLE iothub_message;
 
     // Codes_SRS_IOTHUBTRANSPORT_AMQP_MESSENGER_09_121: [An IOTHUB_MESSAGE_HANDLE shall be obtained from MESSAGE_HANDLE using message_create_IoTHubMessage_from_uamqp_message()]
-    if ((api_call_result = message_create_IoTHubMessage_from_uamqp_message(message, &iothub_message)) != RESULT_OK)
+    api_call_result = message_create_IoTHubMessage_from_uamqp_message(message, &iothub_message);
+    if (api_call_result != RESULT_OK)
     {
         // Codes_SRS_IOTHUBTRANSPORT_AMQP_MESSENGER_09_122: [If message_create_IoTHubMessage_from_uamqp_message() fails, on_message_received_internal_callback shall return the result of messaging_delivery_rejected()]
         result = messaging_delivery_rejected("Rejected due to failure reading AMQP message", "Failed reading AMQP message");
@@ -887,7 +889,8 @@ static int move_events_to_wait_to_send_list(TELEMETRY_MESSENGER_INSTANCE* instan
     int result;
     LIST_ITEM_HANDLE list_item;
 
-    if ((list_item = singlylinkedlist_get_head_item(instance->in_progress_list)) == NULL)
+    list_item = singlylinkedlist_get_head_item(instance->in_progress_list);
+    if (list_item == NULL)
     {
         result = RESULT_OK;
     }
@@ -992,10 +995,8 @@ static void invoke_callback(const void* item, const void* action_context, bool* 
 
     if (NULL != caller_info->on_event_send_complete_callback)
     {
-#pragma warning(push)
-#pragma warning(disable:4305) // Allow typecasting to smaller type on 64 bit systems, since we control ultimate caller.
-        TELEMETRY_MESSENGER_EVENT_SEND_COMPLETE_RESULT messenger_send_result = (TELEMETRY_MESSENGER_EVENT_SEND_COMPLETE_RESULT)action_context;
-#pragma warning(pop)
+        // Casting to smaller type on 64 bit systems, since we control ultimate caller.
+        TELEMETRY_MESSENGER_EVENT_SEND_COMPLETE_RESULT messenger_send_result = (TELEMETRY_MESSENGER_EVENT_SEND_COMPLETE_RESULT)(((intptr_t)action_context) & 0xff);
         caller_info->on_event_send_complete_callback(caller_info->message, messenger_send_result, caller_info->context);
     }
     *continue_processing = true;

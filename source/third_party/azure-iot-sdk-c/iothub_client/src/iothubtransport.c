@@ -203,7 +203,7 @@ static bool find_by_handle(const void* element, const void* value)
 {
     /* data stored at element is device handle */
     const IOTHUB_CLIENT_HANDLE * guess = (const IOTHUB_CLIENT_HANDLE *)element;
-    const IOTHUB_CLIENT_HANDLE match = (const IOTHUB_CLIENT_HANDLE)value;
+    const IOTHUB_CLIENT_HANDLE match = (IOTHUB_CLIENT_HANDLE)value;
     return (*guess == match);
 }
 

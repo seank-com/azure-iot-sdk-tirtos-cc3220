@@ -490,7 +490,7 @@ SAS_TOKEN_STATUS IoTHubClient_Auth_Is_SasToken_Valid(IOTHUB_AUTHORIZATION_HANDLE
         else
         {
             /* Codes_SRS_IoTHub_Authorization_07_016: [ if credential type is not IOTHUB_CREDENTIAL_TYPE_SAS_TOKEN IoTHubClient_Auth_Is_SasToken_Valid shall return true. ] */
-            result = true;
+            result = (SAS_TOKEN_STATUS)true;
         }
     }
     return result;
