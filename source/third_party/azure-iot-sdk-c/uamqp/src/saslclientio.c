@@ -144,7 +144,7 @@ static void handle_error(SASL_CLIENT_IO_INSTANCE* sasl_client_io_instance)
     }
 }
 
-// This callback usage needs to be either verified and commented or integrated into 
+// This callback usage needs to be either verified and commented or integrated into
 // the state machine.
 static void unchecked_on_send_complete(void* context, IO_SEND_RESULT send_result)
 {
@@ -400,7 +400,7 @@ static int saslclientio_receive_byte(SASL_CLIENT_IO_INSTANCE* sasl_client_io_ins
                     LogError("Invalid SASL header exchange state: %s", ENUM_TO_STRING(SASL_HEADER_EXCHANGE_STATE, sasl_client_io_instance->sasl_header_exchange_state));
                     result = __FAILURE__;
                     break;
-                
+
                 case SASL_HEADER_EXCHANGE_HEADER_SENT:
                     /* from this point on we need to decode SASL frames */
                     sasl_client_io_instance->sasl_header_exchange_state = SASL_HEADER_EXCHANGE_HEADER_EXCH;
@@ -1096,7 +1096,7 @@ int saslclientio_open_async(CONCRETE_IO_HANDLE sasl_client_io, ON_IO_OPEN_COMPLE
             }
         }
     }
-    
+
     return result;
 }
 

@@ -634,7 +634,7 @@ static void recvCompleteCallback(void* context, CONTROL_PACKET_TYPE packet, int 
 
                         if (mqtt_client->logTrace)
                         {
-                            trace_log = STRING_construct_sprintf("PUBLISH | IS_DUP: %s | RETAIN: %d | QOS: %s", isDuplicateMsg ? TRUE_CONST : FALSE_CONST, 
+                            trace_log = STRING_construct_sprintf("PUBLISH | IS_DUP: %s | RETAIN: %d | QOS: %s", isDuplicateMsg ? TRUE_CONST : FALSE_CONST,
                                 isRetainMsg ? 1 : 0, ENUM_TO_STRING(QOS_VALUE, qosValue) );
                         }
 
@@ -863,7 +863,7 @@ static void recvCompleteCallback(void* context, CONTROL_PACKET_TYPE packet, int 
                         log_incoming_trace(mqtt_client, trace_log);
                         STRING_delete(trace_log);
                     }
-                    // Forward ping response to operation callback 
+                    // Forward ping response to operation callback
                     if (mqtt_client->fnOperationCallback)
                     {
                         mqtt_client->fnOperationCallback(mqtt_client, MQTT_CLIENT_ON_PING_RESPONSE, NULL, mqtt_client->ctx);

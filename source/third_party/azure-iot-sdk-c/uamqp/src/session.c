@@ -492,8 +492,8 @@ static void on_frame_received(void* context, AMQP_VALUE performative, uint32_t p
             if (flow_get_next_incoming_id(flow_handle, &flow_next_incoming_id) != 0)
             {
                 /*
-                If the next-incoming-id field of the flow frame is not set, 
-                then remote-incomingwindow is computed as follows: 
+                If the next-incoming-id field of the flow frame is not set,
+                then remote-incomingwindow is computed as follows:
                 initial-outgoing-id(endpoint) + incoming-window(flow) - next-outgoing-id(endpoint)
                 */
                 flow_next_incoming_id = session_instance->next_outgoing_id;

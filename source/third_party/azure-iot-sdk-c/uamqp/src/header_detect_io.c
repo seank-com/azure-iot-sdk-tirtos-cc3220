@@ -132,7 +132,7 @@ static void on_send_complete(void* context, IO_SEND_RESULT send_result)
     }
 }
 
-// This callback usage needs to be either verified and commented or integrated into 
+// This callback usage needs to be either verified and commented or integrated into
 // the state machine.
 static void unchecked_on_send_complete(void* context, IO_SEND_RESULT send_result)
 {

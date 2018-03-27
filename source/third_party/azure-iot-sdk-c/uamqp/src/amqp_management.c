@@ -989,7 +989,7 @@ int amqp_management_close(AMQP_MANAGEMENT_HANDLE amqp_management)
                     operation_message->on_execute_operation_complete(operation_message->callback_context, AMQP_MANAGEMENT_EXECUTE_OPERATION_INSTANCE_CLOSED, 0, NULL, NULL);
                     free(operation_message);
                 }
-                
+
                 if (singlylinkedlist_remove(amqp_management->pending_operations, list_item_handle) != 0)
                 {
                     LogError("Cannot remove item");

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "azure_c_shared_utility/gballoc.h"
 #include <signal.h>
 #include <stddef.h>
@@ -132,7 +132,7 @@ TRANSPORT_HANDLE  IoTHubTransport_Create(IOTHUB_CLIENT_TRANSPORT_PROVIDER protoc
             }
         }
     }
-    
+
     return result;
 }
 

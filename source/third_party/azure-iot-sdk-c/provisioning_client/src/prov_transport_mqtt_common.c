@@ -273,7 +273,7 @@ static void mqtt_notification_callback(MQTT_MESSAGE_HANDLE handle, void* user_ct
                 free(mqtt_info->payload_data);
                 mqtt_info->payload_data = NULL;
             }
-            
+
             if ((mqtt_info->payload_data = malloc(payload->length + 1)) == NULL)
             {
                 LogError("failure allocating payload data");
