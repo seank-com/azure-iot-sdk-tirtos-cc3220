@@ -64,7 +64,9 @@ xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
 var slIncs = "";
 var ndkIncs = "";
 var wolfsslIncs = "";
-var commonIncs = "-I../../inc -I../../inc/azure_c_shared_utility  -I../../pal/linux ";
+var commonIncs = "-I../../inc "
+    +"-I../../inc/azure_c_shared_utility  "
+    +"-I../../pal/linux ";
 var pthreadIncs = "";
 var cgtIncs = "";
 
