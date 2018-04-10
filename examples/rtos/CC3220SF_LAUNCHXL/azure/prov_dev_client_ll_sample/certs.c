@@ -111,7 +111,7 @@ const char certificates[] =
 
 const char x509certificate[] =
 "-----BEGIN CERTIFICATE-----\r\n"
-"Put Your x509 Public Certificate Here\r\n"
+"Put Your x509 Public Certificate Chain Here\r\n"
 "-----END CERTIFICATE-----\r\n";
 
 const char x509privateKey[] =

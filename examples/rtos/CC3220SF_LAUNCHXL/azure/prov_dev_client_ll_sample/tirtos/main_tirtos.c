@@ -47,6 +47,7 @@
 
 #include <ti/drivers/net/wifi/simplelink.h>
 #include <ti/net/tls.h>
+#include <ti/net/certconv.h>
 
 #include <pthread.h>
 
@@ -55,8 +56,8 @@ extern const char x509certificate[];
 extern const char x509privateKey[];
 
 #define AZURE_IOT_ROOT_CA_FILENAME "/cert/ms.der"
-#define AZURE_IOT_X509_FILENAME "/cert/cert.der"
-#define AZURE_IOT_X509_PRIVATE_KEY_FILENAME "/cert/key.der"
+#define AZURE_IOT_X509_FILENAME "/cert/cert.pem"
+#define AZURE_IOT_X509_PRIVATE_KEY_FILENAME "/cert/key.pem"
 
 /*
  * The following macro is disabled by default. This is done to prevent the
@@ -74,12 +75,47 @@ static bool overwriteCerts = false;
 
 extern void NetWiFi_init();
 
+static int flashFile(uint8_t *path, const uint8_t *buffer, uint32_t len, int secure, int encode)
+{
+    int32_t ret = (path && buffer) ? 0 : -1;
+
+    uint32_t flags = SL_FS_CREATE | SL_FS_CREATE_SECURE | SL_FS_CREATE_NOSIGNATURE
+        | SL_FS_CREATE_PUBLIC_WRITE | SL_FS_OVERWRITE | SL_FS_CREATE_MAX_SIZE(len);
+
+    if (secure == 0) {
+        flags |= SL_FS_CREATE_PUBLIC_READ;
+    }
+
+    uint32_t derlen = 0;
+    uint8_t *der = NULL;
+    if (ret == 0 && encode != 0) {
+        ret = (CertConv_pem2der(buffer, len, &der, &derlen) < 0) ? -1 : (der == NULL) ? -1 : 0;
+    } else {
+        der = buffer;
+        derlen = len;
+    }
+
+    if (ret == 0) {
+        int32_t fileHandle = sl_FsOpen(path, flags, NULL);
+        if (fileHandle > 0) {
+            ret = sl_FsWrite(fileHandle, 0, (unsigned char *)der, derlen);
+            sl_FsClose(fileHandle, NULL, NULL, 0);
+        }
+    }
+
+    if (der != NULL && encode != 0) {
+        CertConv_free(&der);
+    }
+
+    return (ret);
+}
+
 /*
  *  ======== flashCerts ========
  *  Utility function to flash the contents of a buffer (PEM format) into the
  *  filename/path specified by certName (DER format)
  */
-void flashCerts(uint8_t *certName, uint8_t *buffer, uint32_t bufflen)
+void flashCerts(uint8_t *certName, uint8_t *buffer, uint32_t bufflen, int secure, int encode)
 {
     int status = 0;
     int16_t slStatus = 0;
@@ -94,8 +130,8 @@ void flashCerts(uint8_t *certName, uint8_t *buffer, uint32_t bufflen)
         printf("Flashing certificate file ...");
 
         /* Convert the cert to DER format and write to flash */
-        status = TLS_writeDerFile(buffer, bufflen, TLS_CERT_FORMAT_PEM,
-                (const char *)certName);
+        status = flashFile(certName, buffer, bufflen, secure, encode);
+        status = (status < 0) ? -1 : 0;
 
         if (status != 0) {
             printf("Error: Could not write file %s to flash (%d)\n",
@@ -141,14 +177,14 @@ void *azureThreadFxn(void *arg0)
 
     /* Flash Certificate Files */
     flashCerts((uint8_t *)AZURE_IOT_ROOT_CA_FILENAME, (uint8_t *)certificates,
-            strlen(certificates));
+            strlen(certificates), 1, 1);
 
     flashCerts((uint8_t *)AZURE_IOT_X509_FILENAME, (uint8_t *)x509certificate,
-            strlen(x509certificate));
+            strlen(x509certificate), 0, 0);
 
     flashCerts((uint8_t *)AZURE_IOT_X509_PRIVATE_KEY_FILENAME, (uint8_t *)x509privateKey,
-            strlen(x509privateKey));
-            
+            strlen(x509privateKey), 1, 0);
+
     prov_dev_client_ll_run();
 
     return (NULL);

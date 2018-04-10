@@ -44,9 +44,9 @@
         </file>
         <file path="../../tirtos/main_tirtos.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../../provisioning_dev_client_ll_sample.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../../prov_dev_client_ll_sample.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../../provisioning_dev_client_ll_sample.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../../prov_dev_client_ll_sample.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../../Board.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>

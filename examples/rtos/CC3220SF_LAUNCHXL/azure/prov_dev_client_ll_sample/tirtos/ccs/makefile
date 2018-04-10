@@ -45,7 +45,7 @@ main_tirtos.obj: ../../tirtos/main_tirtos.c $(CONFIGPKG)/compiler.opt
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< --cmd_file=$(CONFIGPKG)/compiler.opt --output_file=$@
 
-iothub_client_sample_mqtt.obj: ../../prov_dev_client_ll_sample.c $(CONFIGPKG)/compiler.opt
+prov_dev_client_ll_sample.obj: ../../prov_dev_client_ll_sample.c $(CONFIGPKG)/compiler.opt
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< --cmd_file=$(CONFIGPKG)/compiler.opt --output_file=$@
 

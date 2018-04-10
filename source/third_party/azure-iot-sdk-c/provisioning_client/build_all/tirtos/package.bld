@@ -39,15 +39,13 @@ var ndkIncs = "";
 var wolfsslIncs = "";
 var provClientIncs = "-I../../inc "
   +"-I../../adapters "
-  +"-I../../deps/RIoT/Emulator/DICE "
-  +"-I../../deps/RIoT/Emulator/RIoT "
-  +"-I../../deps/RIoT/Emulator/RIoT/RIoTCrypt/include "
   +"-I../../../c-utility/pal/linux "
   +"-I../../../c-utility/inc "
 	+"-I../../../deps/parson "
   +"-I../../../uamqp/inc "
   +"-I../../../umqtt/inc "
   +"-I../../../deps/uhttp/inc ";
+
 var pthreadIncs = "";
 var cgtIncs = "";
 /*
