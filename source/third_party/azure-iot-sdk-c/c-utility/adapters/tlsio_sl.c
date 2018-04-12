@@ -18,6 +18,8 @@
 
 /* USER STEP: Flash the CA root certificate to this location */
 #define SL_SSL_CA_CERT "/cert/ms.der"
+#define SL_SSL_CERT "/cert/cert.der"
+#define SL_SSL_KEY "/cert/key.der"
 
 typedef enum TLSIO_STATE_ENUM_TAG
 {
@@ -451,7 +453,16 @@ const IO_INTERFACE_DESCRIPTION* tlsio_sl_get_interface_description(void)
 
 int tlsio_sl_setoption(CONCRETE_IO_HANDLE tls_io, const char* optionName, const void* value)
 {
-    /* not implementing any options */
+    int result = 0;
+    TLS_IO_INSTANCE* inst = (TLS_IO_INSTANCE*)tls_io;
 
-    return 0;
+    if (strcmp("x509EccCertificate", optionName) == 0)
+    {
+        result = TLS_setCertFile(inst->tls_handle, TLS_CERT_TYPE_CERT, TLS_CERT_FORMAT_DER, value);
+    }
+    else if (strcmp("x509EccAliasKey", optionName) == 0)
+    {
+        result = TLS_setCertFile(inst->tls_handle, TLS_CERT_TYPE_KEY, TLS_CERT_FORMAT_DER, value);
+    }
+    return result;
 }

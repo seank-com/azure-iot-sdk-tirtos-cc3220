@@ -31,7 +31,7 @@ XDCARGS= \
     CC32XXSDK=\"$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)\" \
     BIOS=\"$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/kernel/tirtos\" \
     ti.targets.arm.elf.M4=\"$(ti.targets.arm.elf.M4)\" \
-	
+
 
 # Set XDCPATH to contain necessary repositories.
 XDCPATH = $(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/source;$(SIMPLELINK_CC32XX_SDK_INSTALL_DIR)/kernel/tirtos/packages;$(NS_INSTALL_DIR)/source;

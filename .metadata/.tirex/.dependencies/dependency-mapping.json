@@ -1,8 +1,0 @@
-{
-  "../../../examples/rtos/CC3220SF_LAUNCHXL/azure/iothub_client_sample_mqtt/tirtos/ccs/iothub_client_sample_mqtt_CC3220SF_LAUNCHXL_tirtos_ccs.projectspec": "spec_0.dependency.tirex.json",
-  "../../../examples/rtos/CC3220SF_LAUNCHXL/azure/lp_monitor_demo/tirtos/ccs/lp_monitor_demo_CC3220SF_LAUNCHXL_tirtos_ccs.projectspec": "spec_1.dependency.tirex.json",
-  "../../../examples/rtos/CC3220SF_LAUNCHXL/azure/simplesample_http/tirtos/ccs/simplesample_http_CC3220SF_LAUNCHXL_tirtos_ccs.projectspec": "spec_2.dependency.tirex.json",
-  "../../../examples/rtos/CC3220S_LAUNCHXL/azure/iothub_client_sample_mqtt/tirtos/ccs/iothub_client_sample_mqtt_CC3220S_LAUNCHXL_tirtos_ccs.projectspec": "spec_3.dependency.tirex.json",
-  "../../../examples/rtos/CC3220S_LAUNCHXL/azure/lp_monitor_demo/tirtos/ccs/lp_monitor_demo_CC3220S_LAUNCHXL_tirtos_ccs.projectspec": "spec_4.dependency.tirex.json",
-  "../../../examples/rtos/CC3220S_LAUNCHXL/azure/simplesample_http/tirtos/ccs/simplesample_http_CC3220S_LAUNCHXL_tirtos_ccs.projectspec": "spec_5.dependency.tirex.json"
-}

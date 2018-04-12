@@ -37,6 +37,8 @@ var SRCS = [
     "session.c"
 ];
 
+var PPDS = "-DNO_LOGGING -DREFCOUNT_ATOMIC_DONTCARE -D__STDC_NO_ATOMICS__=1 ";
+
 /* Paths to external source libraries */
 xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
 
@@ -122,7 +124,8 @@ for (var i = 0; i < Build.targets.length; i++) {
 
     if (slIncs != "") {
         Pkg.addLibrary("lib/uamqp_sl", target, { profile: profile,
-            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE " + extraOpts, incs: slIncs
+            defs: "-DNET_SL " + PPDS + extraOpts,
+            incs: slIncs
         }).addObjects(SRCS);
     }
 
@@ -130,14 +133,14 @@ for (var i = 0; i < Build.targets.length; i++) {
         if (wolfsslIncs != "") {
              Pkg.addLibrary("lib/uamqp_ndk_wolfssl", target, {
                 profile: profile,
-                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS "
-                        + extraOpts,
+                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS " + PPDS + extraOpts,
                 incs: ndkIncs + wolfsslIncs
             }).addObjects(SRCS)
         }
 
         Pkg.addLibrary("lib/uamqp_ndk", target, { profile: profile,
-            defs: "-DNET_NDK " + extraOpts, incs: ndkIncs
+            defs: "-DNET_NDK " + PPDS + extraOpts,
+            incs: ndkIncs
         }).addObjects(SRCS);
     }
 }

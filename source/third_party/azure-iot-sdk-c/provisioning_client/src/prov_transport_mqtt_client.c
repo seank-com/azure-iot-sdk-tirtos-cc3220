@@ -17,12 +17,15 @@
 static XIO_HANDLE mqtt_transport_io(const char* fqdn, const HTTP_PROXY_OPTIONS* proxy_info)
 {
     XIO_HANDLE result;
-    HTTP_PROXY_IO_CONFIG proxy_config;
     TLSIO_CONFIG tls_io_config;
 
     memset(&tls_io_config, 0, sizeof(TLSIO_CONFIG));
     tls_io_config.hostname = fqdn;
     tls_io_config.port = MQTT_PORT_NUM;
+
+#ifndef TI_RTOS
+    HTTP_PROXY_IO_CONFIG proxy_config;
+
     if (proxy_info != NULL)
     {
         /* Codes_PROV_TRANSPORT_MQTT_CLIENT_07_012: [ If proxy_info is not NULL, amqp_transport_io shall construct a HTTP_PROXY_IO_CONFIG object and assign it to TLSIO_CONFIG underlying_io_parameters ] */
@@ -36,6 +39,7 @@ static XIO_HANDLE mqtt_transport_io(const char* fqdn, const HTTP_PROXY_OPTIONS* 
         tls_io_config.underlying_io_interface = http_proxy_io_get_interface_description();
         tls_io_config.underlying_io_parameters = &proxy_config;
     }
+#endif
 
     const IO_INTERFACE_DESCRIPTION* tlsio_interface = platform_get_default_tlsio();
     if (tlsio_interface == NULL)
@@ -130,7 +134,7 @@ static int prov_transport_mqtt_set_proxy(PROV_DEVICE_TRANSPORT_HANDLE handle, co
     return prov_transport_common_mqtt_set_proxy(handle, proxy_options);
 }
 
-static PROV_DEVICE_TRANSPORT_PROVIDER prov_mqtt_func = 
+static PROV_DEVICE_TRANSPORT_PROVIDER prov_mqtt_func =
 {
     prov_transport_mqtt_create,
     prov_transport_mqtt_destroy,

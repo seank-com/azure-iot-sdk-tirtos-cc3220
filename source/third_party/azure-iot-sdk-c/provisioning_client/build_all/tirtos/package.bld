@@ -7,44 +7,29 @@ var Pkg = xdc.useModule('xdc.bld.PackageContents');
 
 /* make command to search for the srcs */
 Pkg.makePrologue = "vpath %.c ../../src "
-  + "../../adapters "
-  +"../../deps/RIoT/Emulator/DICE "
-  +"../../deps/RIoT/Emulator/RIoT/RIoTCrypt "
-  +"../../../deps/parson";
+  + "../../adapters ";
 
 /* lib/ is a generated directory that 'xdc clean' should remove */
 Pkg.generatedFiles.$add("lib/");
 
 var SRCS = [
+    "prov_auth_client.c",
+    "prov_security_factory.c",
     "iothub_auth_client.c",
     "iothub_security_factory.c",
-    "prov_auth_client.c",
+    "hsm_client_data.c",
+    "custom_hsm_tirtos.c",
     "prov_device_client.c",
     "prov_device_ll_client.c",
-    "prov_sasl_tpm.c",
-    "prov_security_factory.c",
+    "prov_transport_http_client.c",
     "prov_transport_amqp_client.c",
     "prov_transport_amqp_common.c",
-    "prov_transport_amqp_ws_client.c",
-    "prov_transport_http_client.c",
+    "prov_sasl_tpm.c",
     "prov_transport_mqtt_client.c",
-    "prov_transport_mqtt_common.c",
-    "prov_transport_mqtt_ws_client.c",
-    "hsm_client_data.c",
-    "hsm_client_riot.c",
-    "DiceSha256.c",
-    "RiotAes128.c",
-    "RiotAesTables.c",
-    "RiotBase64.c",
-    "RiotCrypt.c",
-    "RiotDerEnc.c",
-    "RiotEcc.c",
-    "RiotHmac.c",
-    "RiotKdf.c",
-    "RiotSha256.c",
-    "RiotX509Bldr.c",
-    "parson.c",
+    "prov_transport_mqtt_common.c"
 ];
+
+var PPDS = "-DNO_LOGGING -DUSE_PROV_MODULE -DHSM_AUTH_TYPE_CUSTOM ";
 
 /* Paths to external source libraries */
 xdcargs = java.lang.System.getenv("XDCARGS").split(" ");
@@ -54,15 +39,13 @@ var ndkIncs = "";
 var wolfsslIncs = "";
 var provClientIncs = "-I../../inc "
   +"-I../../adapters "
-  +"-I../../deps/RIoT/Emulator/DICE "
-  +"-I../../deps/RIoT/Emulator/RIoT "
-  +"-I../../deps/RIoT/Emulator/RIoT/RIoTCrypt/include "
   +"-I../../../c-utility/pal/linux "
   +"-I../../../c-utility/inc "
 	+"-I../../../deps/parson "
   +"-I../../../uamqp/inc "
   +"-I../../../umqtt/inc "
   +"-I../../../deps/uhttp/inc ";
+
 var pthreadIncs = "";
 var cgtIncs = "";
 /*
@@ -143,7 +126,8 @@ for (var i = 0; i < Build.targets.length; i++) {
 
     if (slIncs != "") {
         Pkg.addLibrary("lib/provisioning_client_sl", target, { profile: profile,
-            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE -DUSE_PROV_MODULE -DHSM_TYPE_X509 " + extraOpts, incs: slIncs
+            defs: "-DNET_SL -DREFCOUNT_ATOMIC_DONTCARE " + PPDS + extraOpts,
+            incs: slIncs
         }).addObjects(SRCS);
     }
 
@@ -151,14 +135,14 @@ for (var i = 0; i < Build.targets.length; i++) {
         if (wolfsslIncs != "") {
              Pkg.addLibrary("lib/provisioning_client_ndk_wolfssl", target, {
                 profile: profile,
-                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS -DUSE_PROV_MODULE -DHSM_TYPE_X509 "
-                        + extraOpts,
+                defs: "-DNET_NDK -DNET_WOLFSSL -DWOLFSSL_TIRTOS " + PPDS + extraOpts,
                 incs: ndkIncs + wolfsslIncs
             }).addObjects(SRCS)
         }
 
         Pkg.addLibrary("lib/provisioning_client_ndk", target, { profile: profile,
-            defs: "-DNET_NDK -DUSE_PROV_MODULE -DHSM_TYPE_X509 " + extraOpts, incs: ndkIncs
+            defs: "-DNET_NDK " + PPDS + extraOpts,
+            incs: ndkIncs
         }).addObjects(SRCS);
     }
 }
