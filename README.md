@@ -1,6 +1,18 @@
 # azure-iot-sdk-tirtos-cc3220
 The Azure IoT C SDK for the TI RTOS cc3220
 
+## Install Build Environment
+
+- Download and Install [Code Composer Studio](https://www.ti.com/tools-software/ccs.html)
+  - Choose the Offline version to front load all downloading
+  - Unzip and launch css_setup...exe
+  - For processor, check SimpleLink WiFi CC32xx Wireless MCUs, otherwise take defaults.
+- Launch Code Composer Studio
+  - Select Resource Explorer
+    - Find SimpleLink CC32XX and in the dropdown select version 1.40.01.00 then click install
+    - Find SimpleLink CC32XX SDK Azure IoT Plugin and click install
+    - Navigate to Software | SimpleLink SDK Plugins | SimpleLink CC32XX SDK Azure IoT Plugin | Examples | Development Tools | CC3220SF-LAUNCHXL | azure | iothub_client_sample_mqtt | TI-RTOS | CCS Compiler | iothub_client_sample_mqtt and click **Import to IDE**
+
 ## Building
 
 - Edit C:\ti\azure_cc3220_1_00_00_10\source\third_party\azure-iot-sdk-c\build_all\tirtos\products.mak with the following changes
@@ -65,7 +77,7 @@ $ git status
 
 ## Build Provisioning Sample
 
-- Export ```iothub_client_sample_mqtt...``` to your code composer workspace and build and test it.
+- Import ```iothub_client_sample_mqtt...``` to your code composer workspace and build and test it.
 - Close Code Composer
 - Rename SDKs. This makes testing the new SDK easier. This way all the targets of the samples in your code composer workspace will not need to be updated.
   - Rename ```c:\ti\azure_cc3220_1_00_00_10``` to ```c:\ti\azure_cc3220_1_00_00_10_old```
@@ -129,7 +141,6 @@ $ git status
     - Click **Connect**
     - Click **Generate Image**
     - Click **Program Image (Create & Program)**
-
 
   - Launch **PuTTY**
     - Select ```Serial```
