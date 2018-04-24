@@ -91,8 +91,11 @@ static uint8_t* parseTLV(uint8_t* p, uint8_t* pc, uint8_t* pe, uint32_t* pt, uin
 // findCommonName takes a pointer to the beginning of an x509 certificate in
 // ASN1 DER format and walks the TLV structures to find the common name
 //
-// Returns a pointer to a static buffer containing the common name on success,
-// otherwise NULL
+// p   - pointer to the beginning of the certificate
+// pr  - pointer to the buffer that receives the resulting common name
+// rl  - length of the buffer that receives the resulting common name
+// 
+// Returns 0 if a common name is found, otherwise non-zero
 //
 static int findCommonName(uint8_t* p, char* pr, uint32_t rl) {
   uint8_t *pn, c, e, *pv; uint32_t t, l;
